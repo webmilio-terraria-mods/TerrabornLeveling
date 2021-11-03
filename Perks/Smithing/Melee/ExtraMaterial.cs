@@ -19,5 +19,5 @@ public class ExtraMaterial : ModifiersUnlockingPerk
     public override string Name { get; } = "Extra Material";
     protected override int[] Unlocks { get; } = _unlocks;
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(0, .7f));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(0, .75f));
 }

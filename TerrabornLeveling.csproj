@@ -18,6 +18,5 @@
   <ItemGroup>
     <Folder Include="Items\" />
     <Folder Include="Perks\Fishing\" />
-    <Folder Include="Perks\Smithing\Melee\" />
   </ItemGroup>
 </Project>

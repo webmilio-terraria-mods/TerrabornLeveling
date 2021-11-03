@@ -66,7 +66,10 @@ public class PerkSkillAttributeMapper : Loader<IPerk>, IPerkMapper
     private Type GetSkillFromParent(Type perk)
     {
         if (!perk.TryGetCustomAttribute(out ParentsAttribute attr))
+        {
+            parentMap.Remove(perk);
             return null;
+        }
 
         if (!perkToSkill.TryGetValue(attr.Parents[0], out var skill))
             skill = GetSkillFromParent(attr.Parents[0]);

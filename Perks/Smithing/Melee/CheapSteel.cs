@@ -13,7 +13,7 @@ public class CheapSteel : ModifiersUnlockingPerk
 
     public override string GetDescription(int level)
     {
-        return string.Format(MeleeFormat, "Light", "Bulky");
+        return string.Format(MeleeFormat, nameof(PrefixID.Light), nameof(PrefixID.Bulky));
     }
 
     public override string Name { get; } = "Cheap Steel";
