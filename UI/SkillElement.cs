@@ -6,13 +6,12 @@ using TerrabornLeveling.Skills;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using WebmilioCommons.Extensions;
-using WebmilioCommons.Tinq;
 
 namespace TerrabornLeveling.UI
 {
     public class SkillElement : UIPanel
     {
-        public const float SizeWidth = 0.25f;
+        public const float SizeWidth = 0.65f;
 
         private UIProgressBar _skillExpBar;
         private List<PerkElement> _perks;
@@ -58,11 +57,11 @@ namespace TerrabornLeveling.UI
 
             _perks.Do(p =>
             {
-                p.ChildPerks = new PerkElement[p.Perk.Children.Count];
+                p.ParentPerks = new PerkElement[p.Perk.Parents.Count];
 
-                p.Perk.Children.Do((child, i) =>
+                p.Perk.Parents.Do((child, i) =>
                 {
-                    p.ChildPerks[i] = GetPerkElement(child);
+                    p.ParentPerks[i] = GetPerkElement(child);
                 });
             });
 
@@ -105,10 +104,11 @@ namespace TerrabornLeveling.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            _perks.Do(p => p.DrawConstellationLines(spriteBatch));
             base.Draw(spriteBatch);
 
-            _perks.Do(p => p.DrawConstellationLines(spriteBatch));
             _perks.Do(p => p.DrawPerk(spriteBatch));
+            _perks.Do(p => p.DrawHoverText(spriteBatch));
         }
 
         public override void OnActivate()

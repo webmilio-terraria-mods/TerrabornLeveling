@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TerrabornLeveling.Perks;
+using WebmilioCommons.Extensions;
 
 namespace TerrabornLeveling.Skills;
 
@@ -24,4 +26,16 @@ public abstract class Skill : ISkill
     public virtual int LegendaryLevel { get; }
 
     public virtual IList<IPerk> Perks { get; }
+
+    public float ExperienceRequired(int target) => ExperienceRequried(Level, target);
+
+    public static float ExperienceRequried(int current, int target)
+    {
+        double xp = 0;
+
+        for (int i = current; i <= target; i++)
+            xp += Math.Pow(i, 1.95f);
+
+        return (float) xp;
+    }
 }

@@ -11,7 +11,9 @@ namespace TerrabornLeveling.Skills.Mapping;
 [Service]
 public class PerkSkillAttributeMapper : Loader<IPerk>, IPerkMapper
 {
-    protected readonly Dictionary<Type, List<Type>> map = new();
+    protected List<Type> parentMap = new();
+    protected readonly Dictionary<Type, Type> perkToSkill = new();
+    protected readonly Dictionary<Type, List<Type>> skillToPerks = new();
 
     public PerkSkillAttributeMapper()
     {
@@ -20,19 +22,59 @@ public class PerkSkillAttributeMapper : Loader<IPerk>, IPerkMapper
 
     public Type[] GetPerkTypes(Type skillType)
     {
-        return map.TryGetValue(skillType, out var perks) ? perks.ToArray() : null;
+        return skillToPerks.TryGetValue(skillType, out var perks) ? perks.ToArray() : null;
     }
 
-    public override void Load(Terraria.ModLoader.Mod mod, TypeInfo type)
+    public Type GetSkillType(Type perkType)
     {
-        if (!type.TryGetCustomAttribute(out SkillAttribute attr))
-            return;
+        return perkToSkill.TryGetValue(perkType, out var skill) ? skill : null;
+    }
 
-        if (!map.TryGetValue(attr.SkillType, out var types))
+    public override void Load(Terraria.ModLoader.Mod mod, TypeInfo perkType)
+    {
+        if (!perkType.TryGetCustomAttribute(out SkillAttribute attr))
         {
-            map.Add(attr.SkillType, types = new());
+            parentMap.Add(perkType);
+            return;
         }
 
-        types.Add(type);
+        Map(attr.SkillType, perkType);
+    }
+
+    private void Map(Type skill, Type perk)
+    {
+        if (!skillToPerks.TryGetValue(skill, out var types))
+        {
+            skillToPerks.Add(skill, types = new());
+        }
+
+        perkToSkill.Add(perk, skill);
+        types.Add(perk);
+    }
+
+    public override void PostLoad()
+    {
+        int count = 0;
+        int max = parentMap.Count;
+
+        while (parentMap.Count > 0 && count < max)
+        {
+            GetSkillFromParent(parentMap[0]);
+        }
+    }
+
+    private Type GetSkillFromParent(Type perk)
+    {
+        if (!perk.TryGetCustomAttribute(out ParentsAttribute attr))
+            return null;
+
+        if (!perkToSkill.TryGetValue(attr.Parents[0], out var skill))
+            skill = GetSkillFromParent(attr.Parents[0]);
+
+        if (skill != null)
+            Map(skill, perk);
+
+        parentMap.Remove(perk);
+        return skill;
     }
 }

@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using TerrabornLeveling.Perks;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -19,13 +23,32 @@ public class PerkIconPanel : UIPanel
         Width = new(width, 0);
         Height = new(height, 0);
 
-        BackgroundColor = BorderColor = Color.Red;
+        BackgroundColor = BorderColor = Color.Transparent;
         _clickCallback = clickCallback;
     }
 
-    public override void Update(GameTime gameTime)
+    public void DrawHover(SpriteBatch spriteBatch)
     {
-        base.Update(gameTime);
+        if (IsMouseHovering)
+        {
+            StringBuilder sb = new();
+
+            if (Perk.Unlocked)
+                sb.AppendLine($"Current: {Perk.GetDescription(Perk.Level)}");
+
+            if (Perk.Unlocked && Perk.Level < Perk.MaxLevel)
+                sb.AppendLine();
+
+            if (Perk.Level < Perk.MaxLevel)
+                sb.AppendLine($"Next: {Perk.GetDescription(Perk.Level + 1)}");
+
+            var str = sb.ToString();
+            var txtDims = FontAssets.MouseText.Value.MeasureString(str);
+
+            spriteBatch.DrawString(FontAssets.MouseText.Value, str, Main.MouseScreen + new Vector2(-txtDims.X / 2 - 2, 12 - 2), Color.Black);
+            spriteBatch.DrawString(FontAssets.MouseText.Value, str, Main.MouseScreen + new Vector2(-txtDims.X / 2 + 2, 12 + 2), Color.Black);
+            spriteBatch.DrawString(FontAssets.MouseText.Value, str, Main.MouseScreen + new Vector2(-txtDims.X / 2, 12), Color.White);
+        }
     }
 
     public override void Click(UIMouseEvent evt)

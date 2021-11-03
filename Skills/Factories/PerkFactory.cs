@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using TerrabornLeveling.Perks;
 using TerrabornLeveling.Skills.Mapping;
 using WebmilioCommons;
@@ -54,7 +53,7 @@ public class PerkFactory : IPerkFactory
 
             attr.Parents.Do(delegate(Type parent)
             {
-                perkMap[parent].Children.Add(pair.Value);
+                pair.Value.Parents.Add(perkMap[parent]);
             });
         });
         

@@ -1,13 +1,33 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using TerrabornLeveling.Players;
 using Terraria;
 
 namespace TerrabornLeveling.Perks;
 
 public abstract class Perk : IPerk
 {
+    protected Perk(string identifier)
+    {
+        Identifier = identifier;
+    }
+
+    public virtual void OnPlayerResetEffects(TLPlayer player) { }
+    public virtual void OnPlayerPreUpdate(TLPlayer player) { }
+    public virtual void OnPlayerPostUpdate(TLPlayer player) { }
+
+    public virtual bool AllowCraftingPrefix(TLPlayer player, Item item, int prefix) => true;
+    public virtual void OnPlayerCraftItem(TLPlayer player, Recipe recipe, Item item) { }
+    public virtual void OnPlayerUseItem(TLPlayer player, Item item) { }
+    
+    public virtual void OnPlayerGetFishingLevel(TLPlayer player, Item fishingRod, Item bait, ref float fishingLevel) { }
+
     public bool TryLevel(Player player)
     {
         if (Level == MaxLevel)
+            return false;
+
+        if (Parents.Count > 0 && !Parents.Any(p => p.Unlocked))
             return false;
 
         Level++;
@@ -38,5 +58,5 @@ public abstract class Perk : IPerk
     
     public abstract IPerkVisualDescriptor Visuals { get; }
 
-    public virtual IList<IPerk> Children { get; } = new List<IPerk>();
+    public virtual IList<IPerk> Parents { get; } = new List<IPerk>();
 }

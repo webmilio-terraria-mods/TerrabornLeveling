@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TerrabornLeveling.Players;
@@ -11,7 +10,6 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using WebmilioCommons.Extensions;
 using WebmilioCommons.Inputs;
-using WebmilioCommons.UI;
 
 namespace TerrabornLeveling.UI;
 
@@ -30,8 +28,8 @@ public class SkillsMenu : UIState
             Width = StyleDimension.Fill,
             Height = StyleDimension.Fill,
 
-            BackgroundColor = new(0, 0, 0, 128),
-            BorderColor = new(0, 0, 0, 0.25f)
+            BackgroundColor = new(0, 0, 0, 0.75f),
+            BorderColor = new(0, 0, 0, 0.75f)
         };
 
         Append(container);
@@ -70,7 +68,7 @@ public class SkillsMenu : UIState
         {
             var offsetI = (i - _activeSkill);
 
-            _skills[i].HAlign = 0.5f + offsetI * (SkillElement.SizeWidth * 1.35f);
+            _skills[i].HAlign = 0.5f + offsetI * (SkillElement.SizeWidth * 2.9f);
         }
     }
 

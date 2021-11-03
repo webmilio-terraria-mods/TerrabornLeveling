@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using ReLogic.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
@@ -10,7 +9,11 @@ namespace TerrabornLeveling.Perks;
 
 public class StandardPerkVisualDescriptor : IPerkVisualDescriptor
 {
-    private bool _mouseLeft;
+    private static readonly Color 
+        _lockedColor = new(1, 1, 1, 0.8f),
+        _unlockedColor = Color.White;
+
+    private Vector2 _size;
 
     public StandardPerkVisualDescriptor(Vector2 position) : this(position, TextureAssets.Mana) { }
 
@@ -25,11 +28,8 @@ public class StandardPerkVisualDescriptor : IPerkVisualDescriptor
 
     public void DrawIcon(IPerk perk, SpriteBatch spriteBatch, UIElement container)
     {
-        var scale = perk.Level > 0 ? 1.5f : 1f;
-
+        var scale = (float) perk.Level / perk.MaxLevel * .25f + Scale;
         var location = container.GetDimensions().Center();
-        var iconWidth = Size.X * scale;
-        var iconHeight = Size.Y * scale;
 
         // Mouseover Check
         /*bool mouseIntersects =
@@ -37,23 +37,27 @@ public class StandardPerkVisualDescriptor : IPerkVisualDescriptor
 
         if (container.IsMouseHovering)
         {
-            scale *= 1.5f;
+            scale = Scale + .5f;
         }
 
-        DrawIcon(spriteBatch, Icon, location, scale);
+        DrawIcon(spriteBatch, Icon, location, perk.Unlocked ? _unlockedColor : _lockedColor, scale);
+    } 
 
-        // Sets for checking ON CLICKED, not mouse down.
-        _mouseLeft = Main.mouseLeft;
-    }
-
-    protected virtual void DrawIcon(SpriteBatch spriteBatch, Asset<Texture2D> icon, Vector2 location, float scale)
+    protected virtual void DrawIcon(SpriteBatch spriteBatch, Asset<Texture2D> icon, Vector2 location, Color color, float scale)
     {
         // Icon
-        spriteBatch.Draw(Icon.Value, location - new Vector2(0, 1), null, new Color(1, 1, 1, scale), 0, new Vector2(Icon.Width() / 2f, Icon.Height() / 2f), scale, SpriteEffects.None, 0);
+        spriteBatch.Draw(Icon.Value, location - new Vector2(0, 1), null, color, 0, new Vector2(Size.X / 2f, Size.Y / 2f), scale, SpriteEffects.None, 0);
     }
 
     public Vector2 Position { get; }
-    public Vector2 Size { get; }
 
-    public Asset<Texture2D> Icon { get; }
+    public Vector2 Size
+    {
+        get => _size == default ? _size = Icon.Size() : _size;
+        set => _size = value;
+    }
+
+    public Asset<Texture2D> Icon { get; set; }
+
+    public float Scale { get; set; } = 1f;
 }

@@ -1,10 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TerrabornLeveling.Perks;
+using WebmilioCommons.Extensions;
 
 namespace TerrabornLeveling.Skills;
 
 public interface ISkill
 {
+    public void ForUnlockedPerks(Action<IPerk> action)
+    {
+        Perks.Do(delegate (IPerk perk)
+        {
+            if (perk.Unlocked)
+                action(perk);
+        });
+    }
+
+    public bool TrueForAllUnlockedPerks(Predicate<IPerk> predicate)
+    {
+        return Perks.ForAll(predicate);
+    }
+
     public string Identifier { get; }
     public string Name { get; }
 

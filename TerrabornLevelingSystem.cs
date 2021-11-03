@@ -1,6 +1,5 @@
 ﻿using TerrabornLeveling.Players;
 using TerrabornLeveling.UI;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace TerrabornLeveling;

@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ModLoader;
