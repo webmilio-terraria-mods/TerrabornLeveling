@@ -82,7 +82,7 @@ public class PerkElement : UIPanel
             var parent = parentElement.Perk;
 
             var progressiveGray = 0.5f + (float) Perk.Level / Perk.MaxLevel * 0.5f;
-            spriteBatch.DrawLine(2, dimensions.Center(), parentElement.IconPanel.GetDimensions().Center(), parent.Level > 0 ? new Color(progressiveGray, progressiveGray, progressiveGray) : Color.Gray);
+            spriteBatch.DrawLine(2, dimensions.Center(), parentElement.IconPanel.GetDimensions().Center(), parent.Unlocked ? new Color(progressiveGray, progressiveGray, progressiveGray) : Color.Gray);
         }
     }
 

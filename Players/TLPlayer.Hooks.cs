@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace TerrabornLeveling.Players;
 
@@ -12,5 +13,14 @@ public partial class TLPlayer
         float x = fishingLevel;
         ForUnlockedPerks(perk => perk.OnPlayerGetFishingLevel(this, fishingRod, bait, ref x));
         fishingLevel = x;
+    }
+
+    public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
+    {
+        StatModifier x = damage;
+        float y = flat;
+        ForUnlockedPerks(perk => perk.OnPlayerModifyWeaponDamage(this, item, ref x, ref y));
+        damage = x;
+        flat = y;
     }
 }

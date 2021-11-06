@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TerrabornLeveling.Players;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace TerrabornLeveling.Perks;
 
@@ -16,6 +17,7 @@ public interface IPerk
     public void OnPlayerUseItem(TLPlayer player, Item item) { }
 
     public void OnPlayerGetFishingLevel(TLPlayer player, Item fishingRod, Item bait, ref float fishingLevel) { }
+    public void OnPlayerModifyWeaponDamage(TLPlayer player, Item item, ref StatModifier damage, ref float flat) { }
 
     public bool TryLevel(Player player);
     public void Reset(Player player);
