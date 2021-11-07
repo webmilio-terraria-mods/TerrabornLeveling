@@ -17,9 +17,9 @@ public class StandardPerkVisualDescriptor : IPerkVisualDescriptor
 
     public StandardPerkVisualDescriptor(Vector2 position) : this(position, TextureAssets.Mana) { }
 
-    public StandardPerkVisualDescriptor(Vector2 position, Asset<Texture2D> icon) : this(position, icon, icon.Size()) { }
+    public StandardPerkVisualDescriptor(Vector2 position, Asset<Texture2D> icon) : this(position, icon.Size(), icon) { }
 
-    public StandardPerkVisualDescriptor(Vector2 position, Asset<Texture2D> icon, Vector2 size)
+    public StandardPerkVisualDescriptor(Vector2 position, Vector2 size, Asset<Texture2D> icon)
     {
         Position = position;
         Icon = icon;

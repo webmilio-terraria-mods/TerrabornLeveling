@@ -3,21 +3,18 @@
 namespace TerrabornLeveling.Perks.Smithing.Melee;
 
 [Parents(typeof(CheapSteel))]
-public class ExtraMaterial : ModifiersUnlockingPerk
+public class ExtraMaterial : MeleePerk
 {
-    private static readonly int[] _unlocks = { PrefixID.Heavy, PrefixID.Pointy };
-
     public ExtraMaterial() : base("extramaterial")
     {
     }
 
-    public override string GetDescription(int level)
-    {
-        return string.Format(MeleeFormat, "Heavy", "Pointy");
-    }
+    public override string Name => "Extra Material";
 
-    public override string Name { get; } = "Extra Material";
-    protected override int[] Unlocks { get; } = _unlocks;
+    protected override int RequiredSkill => 15;
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(0, .75f));
+    protected override int[] Unlocks { get; } = { PrefixID.Heavy, PrefixID.Pointy };
+    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Heavy), nameof(PrefixID.Pointy) };
+
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 1));
 }

@@ -12,7 +12,7 @@ namespace TerrabornLeveling.UI
 {
     public class SkillElement : UIPanel
     {
-        public const float SizeWidth = 600;
+        public const float SizeWidth = 550;
 
         private readonly Action<SkillElement> _clickCallback;
         private UIProgressBar _skillExpBar;
@@ -28,7 +28,9 @@ namespace TerrabornLeveling.UI
             VAlign = 0.5f;
             HAlign = 0.5f;
             Width = new(SizeWidth, 0);
-            Height = new(0, 0.8f);
+            Height = new(0, 1f);
+
+            PaddingTop = 0;
 
             BackgroundColor = BorderColor = Color.Transparent;
 
@@ -38,6 +40,7 @@ namespace TerrabornLeveling.UI
 
         private UIPanel MakeSkillPanel()
         {
+            // Perk Container
             UIPanel panel = new()
             {
                 Width = StyleDimension.Fill,

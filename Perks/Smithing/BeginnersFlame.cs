@@ -12,30 +12,28 @@ namespace TerrabornLeveling.Perks.Smithing;
 [Skill(typeof(Skills.Smithing))]
 public class BeginnersFlame : ModifiersUnlockingPerk
 {
-    private static readonly int[] _unlocks =
-    {
-        Agile, Annoying, Deadly, Lazy, Murderous,
-        Nasty, Nimble, Quick, Slow, Sluggish
-    };
+    private const string Description = "Unlocks the possibility of crafting weapons, tools and equipment pieces with prefixes.\n{0}";
 
     public BeginnersFlame() : base("beginnersflame")
     {
     }
 
-    public override string GetDescription(int level)
+    protected override string GetDescriptionString()
     {
-        return "Unlocks the possibility of crafting weapons, tools and equipment pieces with prefixes.\n" +
-               "Agile, Annoying, Deadly, Lazy, Murderous, Nasty,\n" +
-               "Nimble, Quick, Slow, Sluggish.";
+        return Description;
     }
 
     public override string Name { get; } = "Beginner's Flame";
 
-    protected override int[] Unlocks { get; } = _unlocks;
+    protected override int RequiredSkill { get; } = 1;
 
-    public override IPerkVisualDescriptor Visuals { get; } =
-        new StandardPerkVisualDescriptor(new Vector2(.5f, 1), Main.Assets.Request<Texture2D>($"Images/Item_{ItemID.LivingFireBlock}"))
-        {
-            Size = new Vector2(18, 20)
-        };
+    protected override int[] Unlocks { get; } = { Agile, Annoying, Deadly, Lazy, Murderous, Nasty, Nimble, Quick, Slow, Sluggish };
+    protected override object[] UnlockNames { get; } =
+    {
+        nameof(Agile), nameof(Annoying), nameof(Deadly), nameof(Lazy), nameof(Murderous),
+        nameof(Nasty), nameof(Nimble), nameof(Quick), nameof(Slow), nameof(Sluggish)
+    };
+
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.5f, 1), new(18, 20), 
+            Main.Assets.Request<Texture2D>($"Images/Item_{ItemID.LivingFireBlock}"));
 }

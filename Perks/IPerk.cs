@@ -27,7 +27,7 @@ public interface IPerk
     public string Identifier { get; }
     public string Name { get; }
 
-    public int RequiredSkill { get; }
+    public int GetRequiredSkill(int level);
 
     public int Level { get; }
     public int MaxLevel { get; }

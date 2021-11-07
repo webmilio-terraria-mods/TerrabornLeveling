@@ -5,26 +5,27 @@ namespace TerrabornLeveling.Perks.Smithing.RepetitiveTrainingBranch;
 [Parents(typeof(RepetitiveTraining))]
 public class UniversalKnowledge : ModifiersUnlockingPerk
 {
-    private static readonly int[] _unlocks =
-    {
-        Broken, Damaged, Demonic, Forceful, Godly, Hurtful, Keen,
-        Shoddy, Strong, Superior, Unpleasant, Weak, Zealous
-    };
+    private const string Description = "Unlocks the various universal crafting modifiers:\n{0}";
 
     public UniversalKnowledge() : base("universalknowledge")
     {
     }
 
-    public override string GetDescription(int level)
+    protected override string GetDescriptionString()
     {
-        return "Unlocks the various universal crafting modifiers:\n" +
-               "Broken, Damaged, Demonic, Forceful, Godly, Hurtful, Keen, Ruthless,\n" +
-               "Shoddy, Strong, Superior, Unpleasant, Weak, Zealous";
+        return Description;
     }
 
-    public override string Name { get; } = "Universal Knowledge";
+    protected override int RequiredSkill => 50;
 
-    protected override int[] Unlocks { get; } = _unlocks;
+    public override string Name => "Universal Knowledge";
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.5f, .6f));
+    protected override int[] Unlocks { get; } = { Broken, Damaged, Demonic, Forceful, Godly, Hurtful, Keen, Shoddy, Strong, Superior, Unpleasant, Weak, Zealous };
+    protected override object[] UnlockNames { get; } =
+    {
+        nameof(Broken), nameof(Damaged), nameof(Demonic), nameof(Forceful), nameof(Godly), nameof(Hurtful), nameof(Keen), 
+        nameof(Shoddy), nameof(Strong), nameof(Superior), nameof(Unpleasant), nameof(Weak), nameof(Zealous)
+    };
+
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.75f, .6f));
 }

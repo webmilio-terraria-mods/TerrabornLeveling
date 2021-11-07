@@ -25,7 +25,7 @@ public class OneWithTheWater : Perk
     {
         private const int Width = 30, Height = 30;
 
-        public VisualDescriptor() : base(new(0.5f, 0.1f), Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Tags_Shadow"), new(Width, Height))
+        public VisualDescriptor() : base(new(0.5f, 0.1f), new(Width, Height), Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Tags_Shadow"))
         {
         }
 

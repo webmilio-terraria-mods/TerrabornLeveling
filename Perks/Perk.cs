@@ -49,11 +49,10 @@ public abstract class Perk : IPerk
     protected virtual void OnReset(Player player) { }
 
     public abstract string GetDescription(int level);
+    public virtual int GetRequiredSkill(int level) => 0;
 
     public virtual string Identifier { get; set; }
     public abstract string Name { get; }
-
-    public virtual int RequiredSkill { get; }
 
     public virtual int Level { get; set; }
     public virtual int MaxLevel { get; } = 1;

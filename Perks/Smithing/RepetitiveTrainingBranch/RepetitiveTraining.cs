@@ -26,14 +26,19 @@ public class RepetitiveTraining : Perk
         return $"Reduces the chance of getting a bad modifier on a crafted item by {(int)(GetBadModifierMod(level) * 100)}%.";
     }
 
-    public override string Name { get; } = "Repetitive Training";
+    public override int GetRequiredSkill(int level)
+    {
+        return level * 15;
+    }
 
-    public override int MaxLevel { get; } = 2;
+    public override string Name => "Repetitive Training";
+
+    public override int MaxLevel => 2;
 
     public float BadModifierMod => GetBadModifierMod(Level);
     //public float BadModifierMod => 1;
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new Vector2(.5f, .8f));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new Vector2(.75f, .8f));
 
     public static float GetBadModifierMod(int level)
     {

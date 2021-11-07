@@ -3,22 +3,18 @@
 namespace TerrabornLeveling.Perks.Smithing.Melee;
 
 [Parents(typeof(ExtraMaterial))]
-public class CustomFit : ModifiersUnlockingPerk
+public class CustomFit : MeleePerk
 {
-    private static readonly int[] _unlocks = { PrefixID.Small, PrefixID.Large };
-
     public CustomFit() : base("customfit")
     {
     }
 
-    public override string GetDescription(int level)
-    {
-        return string.Format(MeleeFormat, nameof(PrefixID.Small), nameof(PrefixID.Large));
-    }
+    public override string Name => "Custom Fit";
 
-    public override string Name { get; } = "Custom Fit";
+    protected override int RequiredSkill => 25;
 
-    protected override int[] Unlocks { get; } = _unlocks;
+    protected override int[] Unlocks { get; } = { PrefixID.Small, PrefixID.Large };
+    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Small), nameof(PrefixID.Large) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(0, 0.6f));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 2));
 }
