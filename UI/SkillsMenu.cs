@@ -44,7 +44,7 @@ public class SkillsMenu : UIState
         container.RemoveAllChildren();
 
         _skills = new SkillElement[player.Skills.Count];
-        player.Skills.Do((skill, i) => container.Append(_skills[i] = new SkillElement(skill)));
+        player.Skills.Do((skill, i) => container.Append(_skills[i] = new SkillElement(skill, i, OnSkillElementClick)));
 
         _activeSkill = _skills.Length / 2;
 
@@ -133,9 +133,16 @@ public class SkillsMenu : UIState
         //_skills.Do(s => s.Recalculate());
     }
 
-    private int[] PreviousTransition(int current)
+    private void OnSkillElementClick(SkillElement skill)
     {
-        return null;
+        if (skill.CreationIndex > _activeSkill)
+        {
+            GoNext();
+        }
+        else if (skill.CreationIndex < _activeSkill)
+        {
+            GoPrevious();
+        }
     }
 
     public override void Draw(SpriteBatch spriteBatch)

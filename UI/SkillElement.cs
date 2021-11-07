@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using TerrabornLeveling.Perks;
@@ -13,12 +14,16 @@ namespace TerrabornLeveling.UI
     {
         public const float SizeWidth = 600;
 
+        private readonly Action<SkillElement> _clickCallback;
         private UIProgressBar _skillExpBar;
         private List<PerkElement> _perks;
 
-        public SkillElement(ISkill skill)
+        public SkillElement(ISkill skill, int creationIndex, Action<SkillElement> clickCallback)
         {
             Skill = skill;
+            CreationIndex = creationIndex;
+
+            _clickCallback = clickCallback;
 
             VAlign = 0.5f;
             HAlign = 0.5f;
@@ -118,11 +123,17 @@ namespace TerrabornLeveling.UI
             _skillExpBar.SetProgress(Skill.Experience / Skill.ExperienceForLevel);
         }
 
+        public override void Click(UIMouseEvent evt)
+        {
+            _clickCallback?.Invoke(this);
+        }
+
         public PerkElement GetPerkElement(IPerk perk)
         {
             return _perks.Find(p => p.Perk == perk);
         }
 
-        public ISkill Skill { get; set; }
+        public ISkill Skill { get; }
+        public int CreationIndex { get; }
     }
 }
