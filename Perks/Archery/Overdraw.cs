@@ -2,6 +2,7 @@
 using TerrabornLeveling.Skills;
 using Terraria;
 using Terraria.ModLoader;
+using Infuller.Items.Bow;
 
 namespace TerrabornLeveling.Perks.Archery;
 
@@ -14,7 +15,7 @@ public class Overdraw : Perk
 
     public override void OnPlayerModifyWeaponDamage(TLPlayer player, Item item, ref StatModifier damage, ref float flat)
     {
-        if (item.DamageType != DamageClass.Ranged) return;
+        if (item.DamageType != DamageClass.Ranged || !Bows.Is(item.type)) return;
 
         damage *= 1 + GetDamageMultiplier(Level);
     }

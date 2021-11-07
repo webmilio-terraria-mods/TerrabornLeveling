@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using TerrabornLeveling.Perks;
 using TerrabornLeveling.Skills;
 using Terraria.GameContent.UI.Elements;
@@ -11,7 +11,7 @@ namespace TerrabornLeveling.UI
 {
     public class SkillElement : UIPanel
     {
-        public const float SizeWidth = 0.65f;
+        public const float SizeWidth = 600;
 
         private UIProgressBar _skillExpBar;
         private List<PerkElement> _perks;
@@ -22,7 +22,7 @@ namespace TerrabornLeveling.UI
 
             VAlign = 0.5f;
             HAlign = 0.5f;
-            Width = new(0, SizeWidth);
+            Width = new(SizeWidth, 0);
             Height = new(0, 0.8f);
 
             BackgroundColor = BorderColor = Color.Transparent;

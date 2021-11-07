@@ -4,12 +4,14 @@ using Microsoft.Xna.Framework.Input;
 using TerrabornLeveling.Players;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using WebmilioCommons.Extensions;
 using WebmilioCommons.Inputs;
+using ReLogic.Graphics;
 
 namespace TerrabornLeveling.UI;
 
@@ -19,6 +21,8 @@ public class SkillsMenu : UIState
 
     private int _skillSwitchTimer;
     private int _activeSkill;
+    private float _cameraX;
+    private float _cameraHSpeed;
     private SkillElement[] _skills;
 
     public SkillsMenu()
@@ -52,6 +56,8 @@ public class SkillsMenu : UIState
         base.Update(gameTime);
         var keys = ModContent.GetInstance<KeyboardManager>();
 
+        UpdateCameraPosition();
+
         if (keys.justPressed[(int)Keys.Left])
         {
             GoPrevious();
@@ -62,13 +68,44 @@ public class SkillsMenu : UIState
         }
     }
 
+    private void UpdateCameraPosition()
+    {
+        // Camera scrolling
+        float cameraDestination = _activeSkill * SkillElement.SizeWidth;
+        if (_cameraX < cameraDestination)
+        {
+            _cameraHSpeed += 0.5f;
+            if (_cameraHSpeed > 75)
+                _cameraHSpeed = 75;
+        }
+        if (_cameraX > cameraDestination)
+        {
+            _cameraHSpeed -= 0.5f;
+            if (_cameraHSpeed < -75)
+                _cameraHSpeed = -75;
+        }
+
+        if (_cameraHSpeed != 0)
+        {
+            _cameraX += _cameraHSpeed;
+            UpdatePosition();
+        }
+
+        if ((_cameraHSpeed > 0 && _cameraX > cameraDestination) || (_cameraHSpeed < 0 && _cameraX < cameraDestination))
+        {
+            _cameraX = cameraDestination;
+            _cameraHSpeed = 0;
+        }
+    }
+
     private void UpdatePosition()
     {
         for (int i = 0; i < _skills.Length; i++)
         {
-            var offsetI = (i - _activeSkill);
+            //var offsetI = (i - _activeSkill);
 
-            _skills[i].HAlign = 0.5f + offsetI * (SkillElement.SizeWidth * 2.9f);
+            _skills[i].Left = new(-_cameraX + container.GetDimensions().Width / 2f + i * SkillElement.SizeWidth - SkillElement.SizeWidth / 2f, 0);
+            _skills[i].Recalculate();
         }
     }
 
@@ -81,7 +118,7 @@ public class SkillsMenu : UIState
 
         UpdatePosition();
 
-        _skills.Do(s => s.Recalculate());
+        //_skills.Do(s => s.Recalculate());
     }
 
     private void GoNext()
@@ -93,7 +130,7 @@ public class SkillsMenu : UIState
 
         UpdatePosition();
 
-        _skills.Do(s => s.Recalculate());
+        //_skills.Do(s => s.Recalculate());
     }
 
     private int[] PreviousTransition(int current)

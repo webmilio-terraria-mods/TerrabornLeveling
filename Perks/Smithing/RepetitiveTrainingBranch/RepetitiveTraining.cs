@@ -15,7 +15,7 @@ public class RepetitiveTraining : Perk
 
     public override bool AllowCraftingPrefix(TLPlayer player, Item item, int prefix)
     {
-        if (PrefixAlignments.TryGet(prefix, out var alignment) && alignment >= PrefixAlignment.Neutral)
+        if (Prefixes.TryGet(prefix, out var alignment) && alignment >= PrefixAlignment.Neutral)
             return true;
 
         return Main.rand.NextFloat() > BadModifierMod;
