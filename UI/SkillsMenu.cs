@@ -104,7 +104,7 @@ public class SkillsMenu : UIState
         {
             //var offsetI = (i - _activeSkill);
 
-            _skills[i].Left = new(-_cameraX + container.GetDimensions().Width / 2f + i * SkillElement.SizeWidth - SkillElement.SizeWidth / 2f, 0);
+            _skills[i].Left = new(-_cameraX + i * SkillElement.SizeWidth, 0f);
             _skills[i].Recalculate();
         }
     }
@@ -116,7 +116,7 @@ public class SkillsMenu : UIState
         if (_activeSkill < 0)
             _activeSkill = _skills.Length - 1;
 
-        UpdatePosition();
+        //UpdatePosition();
 
         //_skills.Do(s => s.Recalculate());
     }
@@ -128,7 +128,7 @@ public class SkillsMenu : UIState
         if (_activeSkill >= _skills.Length)
             _activeSkill = 0;
 
-        UpdatePosition();
+        //UpdatePosition();
 
         //_skills.Do(s => s.Recalculate());
     }
