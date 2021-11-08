@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.Xna.Framework.Input;
+using TerrabornLeveling.Assets;
 using Terraria.ModLoader;
 using WebmilioCommons;
 using WebmilioCommons.DependencyInjection;
@@ -28,10 +29,16 @@ public class TerrabornLeveling : Mod
         });
     }
 
+    public override void PostSetupContent()
+    {
+        TextureAssets.LoadTextures();
+    }
+
     public override void Unload()
     {
         Services = null;
         Instance = null;
+        TextureAssets.UnloadTextures();
     }
 
     [Keybind("Open Skills Menu", Keys.P)] public ModKeybind SkillMenu { get; set; }

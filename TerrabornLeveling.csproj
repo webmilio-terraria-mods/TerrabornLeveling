@@ -20,4 +20,9 @@
     <Folder Include="Perks\Fishing\" />
     <Folder Include="Perks\Gunplay\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\Textures\Skill_Experience_Bar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

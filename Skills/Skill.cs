@@ -18,7 +18,8 @@ public abstract class Skill : ISkill
     public abstract string Description { get; }
 
     public virtual float Experience { get; }
-    public virtual float ExperienceForLevel { get; }
+
+    public virtual float ExperienceForLevel => ExperienceRequired(Level + 1);
 
     public virtual int Level { get; } = 1;
     public virtual int MaxLevel { get; } = 100;

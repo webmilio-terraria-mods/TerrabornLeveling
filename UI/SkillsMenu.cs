@@ -4,14 +4,12 @@ using Microsoft.Xna.Framework.Input;
 using TerrabornLeveling.Players;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using WebmilioCommons.Extensions;
 using WebmilioCommons.Inputs;
-using ReLogic.Graphics;
 
 namespace TerrabornLeveling.UI;
 
@@ -95,6 +93,7 @@ public class SkillsMenu : UIState
         {
             _cameraX = cameraDestination;
             _cameraHSpeed = 0;
+            UpdatePosition();
         }
     }
 

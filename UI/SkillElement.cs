@@ -15,7 +15,7 @@ namespace TerrabornLeveling.UI
         public const float SizeWidth = 550;
 
         private readonly Action<SkillElement> _clickCallback;
-        private UIProgressBar _skillExpBar;
+        private SkillExperienceBarElement _skillExpBar;
         private List<PerkElement> _perks;
 
         public SkillElement(ISkill skill, int creationIndex, Action<SkillElement> clickCallback)
@@ -102,9 +102,7 @@ namespace TerrabornLeveling.UI
             _skillExpBar = new()
             {
                 HAlign = 0.5f,
-                VAlign = 0.9f,
-                Width = new(0, 0.8f),
-                Height = new(24, 0)
+                Top = new(0, 0.5f)
             };
 
             skillInfoPanel.Append(_skillExpBar);
@@ -123,7 +121,7 @@ namespace TerrabornLeveling.UI
         {
             base.OnActivate();
 
-            _skillExpBar.SetProgress(Skill.Experience / Skill.ExperienceForLevel);
+            _skillExpBar.SetProgress((Skill.Experience - Skills.Skill.ExperienceRequried(1, Skill.Level)) / Skill.ExperienceForLevel);
         }
 
         public override void Click(UIMouseEvent evt)
