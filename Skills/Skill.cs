@@ -21,8 +21,8 @@ public abstract class Skill : ISkill
 
     public virtual float ExperienceForLevel => ExperienceRequired(Level + 1);
 
-    public virtual int Level { get; } = 1;
-    public virtual int MaxLevel { get; } = 100;
+    public virtual int Level => 1;
+    public virtual int MaxLevel => 100;
 
     public virtual int LegendaryLevel { get; }
 

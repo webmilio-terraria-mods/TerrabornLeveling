@@ -1,4 +1,4 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Melee;
 
@@ -11,10 +11,10 @@ public class CheapSteel : MeleePerk
 
     public override string Name => "Cheap Steel";
 
-    protected override int RequiredSkill => 5;
+    protected override int RequiredSkill => 10;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Light, PrefixID.Bulky };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Light), nameof(PrefixID.Bulky) };
+    protected override int[] Unlocks { get; } = { Heavy, Light, Bulky, Pointy };
+    protected override string[] UnlockNames { get; } = { nameof(Heavy), nameof(Light), nameof(Bulky), nameof(Pointy) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 0));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 1));
 }

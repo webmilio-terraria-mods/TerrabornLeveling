@@ -1,4 +1,4 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Ranged;
 
@@ -11,10 +11,10 @@ public class ScopedWork : RangedPerk
 
     public override string Name => "Scoped Work";
 
-    protected override int RequiredSkill => 5;
+    protected override int RequiredSkill => 15;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Sighted, PrefixID.Intimidating };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Sighted), nameof(PrefixID.Intimidating) };
+    protected override int[] Unlocks { get; } = { Sighted, Powerful, Rapid, Intimidating };
+    protected override string[] UnlockNames { get; } = { nameof(Sighted), nameof(Powerful), nameof(Rapid), nameof(Intimidating) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 0));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 1));
 }

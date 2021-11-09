@@ -3,7 +3,7 @@
 [Parents(typeof(UniversalKnowledge))]
 public class Expertise : Perk
 {
-    private string[] _categories = { "common", "universal", "specialization" };
+    private string[] _categories = { "", "common", "universal", "specialization" };
 
     public Expertise() : base("expertise")
     {

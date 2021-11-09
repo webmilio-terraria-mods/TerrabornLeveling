@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TerrabornLeveling.Players;
+using TerrabornLeveling.Skills;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -27,14 +28,17 @@ public interface IPerk
     public string Identifier { get; }
     public string Name { get; }
 
+    public int RequiredSkillForNext => GetRequiredSkill(Level + 1);
     public int GetRequiredSkill(int level);
 
     public int Level { get; }
     public int MaxLevel { get; }
 
     public bool Unlocked => Level > 0;
+    public bool Maxed => Level == MaxLevel;
 
     public IPerkVisualDescriptor Visuals { get; }
 
+    public ISkill Skill { get; set; }
     public IList<IPerk> Parents { get; }
 }

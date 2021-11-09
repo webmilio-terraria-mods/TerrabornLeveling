@@ -9,8 +9,8 @@ public class Smithing : Skill
     {
     }
 
-    public override string Identifier { get; } = "smithing";
-    public override string Name { get; } = "Smithing";
+    public override string Identifier => "smithing";
+    public override string Name => "Smithing";
 
-    public override string Description { get; } = "";
+    public override string Description => "";
 }

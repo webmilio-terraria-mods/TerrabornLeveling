@@ -9,9 +9,9 @@ public class Archery : Skill
     {
     }
 
-    public override string Identifier { get; } = "archery";
+    public override string Identifier => "archery";
 
-    public override string Name { get; } = "Archery";
+    public override string Name => "Archery";
 
-    public override string Description { get; } = "";
+    public override string Description => "";
 }

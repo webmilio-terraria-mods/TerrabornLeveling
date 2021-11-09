@@ -6,7 +6,7 @@ public abstract class MagicPerk : ModifiersUnlockingPerk
         XPosition = .6f,
         YPosition = .9f;
 
-    private const string MagicFormat = "Unlocks the {0} and {1} modifiers for magic weapons.";
+    private const string MagicFormat = "Unlocks the following modifiers for magic weapons:\n{0}";
 
     protected MagicPerk(string identifier) : base(identifier)
     {

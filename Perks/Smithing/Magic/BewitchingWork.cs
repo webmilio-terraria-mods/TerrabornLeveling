@@ -1,4 +1,4 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Magic;
 
@@ -13,8 +13,8 @@ public class BewitchingWork : MagicPerk
 
     protected override int RequiredSkill => 5;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Taboo, PrefixID.Manic };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Taboo), nameof(PrefixID.Manic) };
+    protected override int[] Unlocks { get; } = { Furious, Taboo, Manic, Adept };
+    protected override string[] UnlockNames { get; } = { nameof(Adept), nameof(Taboo), nameof(Manic), nameof(Adept) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 0));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 1));
 }

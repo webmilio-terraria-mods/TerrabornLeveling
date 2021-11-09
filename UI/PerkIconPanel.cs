@@ -31,7 +31,7 @@ public class PerkIconPanel : UIPanel
     {
         if (IsMouseHovering)
         {
-            StringBuilder sb = new();
+            /*StringBuilder sb = new();
 
             if (Perk.Unlocked)
                 sb.AppendLine($"Current: {Perk.GetDescription(Perk.Level)}");
@@ -48,6 +48,15 @@ public class PerkIconPanel : UIPanel
             spriteBatch.DrawString(FontAssets.MouseText.Value, str, Main.MouseScreen + new Vector2(-txtDims.X / 2 - 2, 12 - 2), Color.Black);
             spriteBatch.DrawString(FontAssets.MouseText.Value, str, Main.MouseScreen + new Vector2(-txtDims.X / 2 + 2, 12 + 2), Color.Black);
             spriteBatch.DrawString(FontAssets.MouseText.Value, str, Main.MouseScreen + new Vector2(-txtDims.X / 2, 12), Color.White);
+
+            if (!Perk.Maxed)
+            {
+                var requirements = $"Requires Level {Perk.RequiredSkillForNext}";
+                var requirementsDims = FontAssets.MouseText.Value.MeasureString(requirements);
+
+                spriteBatch.DrawString(FontAssets.MouseText.Value, requirements, Main.MouseScreen + new Vector2(-requirementsDims.X / 2, txtDims.Y - requirementsDims.Y / 2), 
+                    );
+            }*/
         }
     }
 

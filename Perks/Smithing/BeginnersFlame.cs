@@ -28,7 +28,7 @@ public class BeginnersFlame : ModifiersUnlockingPerk
     protected override int RequiredSkill { get; } = 1;
 
     protected override int[] Unlocks { get; } = { Agile, Annoying, Deadly, Lazy, Murderous, Nasty, Nimble, Quick, Slow, Sluggish };
-    protected override object[] UnlockNames { get; } =
+    protected override string[] UnlockNames { get; } =
     {
         nameof(Agile), nameof(Annoying), nameof(Deadly), nameof(Lazy), nameof(Murderous),
         nameof(Nasty), nameof(Nimble), nameof(Quick), nameof(Slow), nameof(Sluggish)

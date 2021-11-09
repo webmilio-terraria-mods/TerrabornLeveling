@@ -1,8 +1,8 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Melee;
 
-[Parents(typeof(CustomFit))]
+[Parents(typeof(CheapSteel))]
 public class TeenageWisdom : MeleePerk
 {
     public TeenageWisdom() : base("teenagewisdom")
@@ -11,10 +11,10 @@ public class TeenageWisdom : MeleePerk
 
     public override string Name => "Teenage Wisdom";
 
-    protected override int RequiredSkill => 35;
+    protected override int RequiredSkill => 30;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Dull, PrefixID.Dangerous };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Dull), nameof(PrefixID.Dangerous) };
+    protected override int[] Unlocks { get; } = { Dull, Small, Large, Sharp };
+    protected override string[] UnlockNames { get; } = { nameof(Dull), nameof(Small), nameof(Large), nameof(Sharp) };
 
     public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 3));
 }

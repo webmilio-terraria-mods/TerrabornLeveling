@@ -1,22 +1,20 @@
-﻿using TerrabornLeveling.Players;
-using TerrabornLeveling.Skills;
+﻿using Infuller.Items;
+using Infuller.Items.Melee;
+using TerrabornLeveling.Players;
 using Terraria;
 using Terraria.ModLoader;
-using Infuller.Items.Bow;
-using Infuller.Items.Repeater;
 
-namespace TerrabornLeveling.Perks.Archery;
+namespace TerrabornLeveling.Perks.OneHanded;
 
-[Skill(typeof(Skills.Archery))]
-public class Overdraw : Perk
+public class Armsman : Perk
 {
-    public Overdraw() : base("overdraw")
+    public Armsman() : base("armsman")
     {
     }
 
     public override void OnPlayerModifyWeaponDamage(TLPlayer player, Item item, ref StatModifier damage, ref float flat)
     {
-        if (!Bows.Is(item.type) && !Repeaters.Is(item.type)) return;
+        if (!Swords.TryGet(item.type, out var hands) || !hands.HasFlag(WeaponHands.OneHanded)) return;
 
         damage *= DamageMultiplier;
     }
@@ -28,11 +26,11 @@ public class Overdraw : Perk
 
     public override string GetDescription(int level)
     {
-        return $"Bows do {(int)(GetDamageMultiplier(level) * 100)}% more damage.";
+        return $"One-handed weapons do {(int)(GetDamageMultiplier(level) * 100)}% more damage.";
     }
 
-    public override string Name { get; } = "Overdraw";
-    public override int MaxLevel { get; } = 5;
+    public override string Name => "Armsman";
+    public override int MaxLevel => 5;
 
     public float DamageMultiplier => 1 + GetDamageMultiplier(Level);
 

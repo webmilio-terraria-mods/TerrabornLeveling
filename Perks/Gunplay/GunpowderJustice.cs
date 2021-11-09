@@ -1,4 +1,4 @@
-﻿using Infuller.Items.Guns;
+﻿using Infuller.Items.Gun;
 using Microsoft.Xna.Framework.Graphics;
 using TerrabornLeveling.Players;
 using TerrabornLeveling.Skills;

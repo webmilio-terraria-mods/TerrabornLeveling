@@ -9,8 +9,8 @@ public class Gunplay : Skill
     {
     }
 
-    public override string Identifier { get; } = "gunplay";
-    public override string Name { get; } = "Gunplay";
+    public override string Identifier => "gunplay";
+    public override string Name => "Gunplay";
 
-    public override string Description { get; } = "";
+    public override string Description => "";
 }

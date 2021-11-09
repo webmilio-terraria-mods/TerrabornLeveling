@@ -3,10 +3,10 @@
 public abstract class RangedPerk : ModifiersUnlockingPerk
 {
     protected const float 
-        XPosition = .30f,
-        YPosition = .85f;
+        XPosition = .25f,
+        YPosition = .825f;
 
-    private const string RangedFormat = "Unlocks the {0} and {1} modifiers for ranged weapons.";
+    private const string RangedFormat = "Unlocks the following modifiers for ranged weapons:\n{0}";
 
     protected RangedPerk(string identifier) : base(identifier)
     {

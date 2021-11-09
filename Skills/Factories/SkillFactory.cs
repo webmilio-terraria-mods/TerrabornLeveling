@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using TerrabornLeveling.Perks;
 using WebmilioCommons.DependencyInjection;
+using WebmilioCommons.Extensions;
 
 namespace TerrabornLeveling.Skills.Factories;
 
@@ -33,6 +34,8 @@ public class SkillFactory : ISkillFactory
             try
             {
                 skill = (ISkill)constructor.Invoke(new object[] { perks });
+                perks.Do(p => p.Skill = skill);
+
                 return skill;
             }
             catch

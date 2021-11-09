@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TerrabornLeveling.Players;
+using TerrabornLeveling.Skills;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -59,5 +60,6 @@ public abstract class Perk : IPerk
     
     public abstract IPerkVisualDescriptor Visuals { get; }
 
+    public ISkill Skill { get; set; }
     public virtual IList<IPerk> Parents { get; } = new List<IPerk>();
 }

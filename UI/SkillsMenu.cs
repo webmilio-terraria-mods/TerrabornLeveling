@@ -16,8 +16,7 @@ namespace TerrabornLeveling.UI;
 public class SkillsMenu : UIState
 {
     private readonly UIPanel container;
-
-    private int _skillSwitchTimer;
+    
     private int _activeSkill;
     private float _cameraX;
     private float _cameraHSpeed;
@@ -134,14 +133,15 @@ public class SkillsMenu : UIState
 
     private void OnSkillElementClick(SkillElement skill)
     {
-        if (skill.CreationIndex > _activeSkill)
+        _activeSkill = skill.CreationIndex;
+        /*if (skill.CreationIndex > _activeSkill)
         {
             GoNext();
         }
         else if (skill.CreationIndex < _activeSkill)
         {
             GoPrevious();
-        }
+        }*/
     }
 
     public override void Draw(SpriteBatch spriteBatch)

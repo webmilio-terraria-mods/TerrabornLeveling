@@ -1,8 +1,8 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Melee;
 
-[Parents(typeof(DaggerCraft))]
+[Parents(typeof(TeenageWisdom))]
 public class AcaciaMelanoxylonProcess : MeleePerk
 {
     public AcaciaMelanoxylonProcess() : base("acaciamelanoxylonprocess")
@@ -11,10 +11,10 @@ public class AcaciaMelanoxylonProcess : MeleePerk
 
     public override string Name => "Acacia Melanoxylon Process";
 
-    protected override int RequiredSkill => 55;
+    protected override int RequiredSkill => 50;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Shameful, PrefixID.Massive };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Shameful), nameof(PrefixID.Massive) };
+    protected override int[] Unlocks { get; } = { Shameful, Tiny, Sharp, Massive };
+    protected override string[] UnlockNames { get; } = { nameof(Shameful), nameof(Tiny), nameof(Sharp), nameof(Massive) };
 
     public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 5));
 }

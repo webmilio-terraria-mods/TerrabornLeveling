@@ -21,7 +21,7 @@ public class UniversalKnowledge : ModifiersUnlockingPerk
     public override string Name => "Universal Knowledge";
 
     protected override int[] Unlocks { get; } = { Broken, Damaged, Demonic, Forceful, Godly, Hurtful, Keen, Shoddy, Strong, Superior, Unpleasant, Weak, Zealous };
-    protected override object[] UnlockNames { get; } =
+    protected override string[] UnlockNames { get; } =
     {
         nameof(Broken), nameof(Damaged), nameof(Demonic), nameof(Forceful), nameof(Godly), nameof(Hurtful), nameof(Keen), 
         nameof(Shoddy), nameof(Strong), nameof(Superior), nameof(Unpleasant), nameof(Weak), nameof(Zealous)

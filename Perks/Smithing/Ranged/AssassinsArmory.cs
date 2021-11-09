@@ -1,8 +1,8 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Ranged;
 
-[Parents(typeof(MildImprovements))]
+[Parents(typeof(Overclock))]
 public class AssassinsArmory : RangedPerk
 {
     public AssassinsArmory() : base("assassinsarmory")
@@ -11,10 +11,10 @@ public class AssassinsArmory : RangedPerk
 
     public override string Name => "Assassin's Armory";
 
-    protected override int RequiredSkill => 75;
+    protected override int RequiredSkill => 70;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Awkward, PrefixID.Deadly };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Awkward), nameof(PrefixID.Deadly) };
+    protected override int[] Unlocks { get; } = { Awkward, Deadly };
+    protected override string[] UnlockNames { get; } = { nameof(Awkward), nameof(Deadly) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 4));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 5));
 }

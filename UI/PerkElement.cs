@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TerrabornLeveling.Perks;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
@@ -15,6 +17,7 @@ namespace TerrabornLeveling.UI;
 public class PerkElement : UIPanel
 {
     private int _lastLevelUpdate = -1;
+    private UIElement _tooltip;
 
     public PerkElement(IPerk perk)
     {
@@ -72,6 +75,92 @@ public class PerkElement : UIPanel
         }
     }
 
+    public override void MouseOver(UIMouseEvent evt)
+    {
+        if (_tooltip == null) // ô.o Strange
+        {
+            BuildTooltip();
+        }
+    }
+
+    public override void MouseOut(UIMouseEvent evt)
+    {
+        if (_tooltip != null)
+        {
+            TooltipContainer.RemoveChild(_tooltip);
+            _tooltip = null;
+        }
+    }
+
+    private void BuildTooltip()
+    {
+        float height = 0;
+
+        _tooltip = new UIPanel()
+        {
+            Left = new(Main.MouseScreen.X, 0),
+            Top = new(Main.MouseScreen.Y, 0)
+        };
+
+        UIText description;
+
+        {
+            StringBuilder sb = new();
+
+            if (Perk.Unlocked)
+                sb.AppendLine($"Current: {Perk.GetDescription(Perk.Level)}");
+
+            if (Perk.Unlocked && !Perk.Maxed) sb.AppendLine();
+
+            if (Perk.Level < Perk.MaxLevel)
+                sb.AppendLine($"Next: {Perk.GetDescription(Perk.Level + 1)}");
+
+            var str = sb.ToString();
+            var dim = FontAssets.MouseText.Value.MeasureString(str);
+
+            height += dim.Y;
+
+            description = new UIText(str)
+            {
+                Width = new(dim.X, 0),
+                Height = new(dim.Y, 0)
+            };
+
+            _tooltip.Append(description);
+        }
+
+        UIText requirements = null;
+
+        if (!Perk.Maxed)
+        {
+            var str = $"Requires Level {Perk.RequiredSkillForNext}";
+            var dims = FontAssets.MouseText.Value.MeasureString(str);
+
+            height += dims.Y;
+
+            requirements = new UIText(str)
+            {
+                Width = new(dims.X, 0),
+                Top = new(description.Height.Pixels - dims.Y / 2, 0),
+
+                TextColor = Perk.Skill.Level >= Perk.RequiredSkillForNext ? Color.Green : Color.Red
+            };
+
+            _tooltip.Append(requirements);
+        }
+
+        ((UIPanel)_tooltip).BackgroundColor.A = 200;
+
+        const int padding = 15;
+
+        _tooltip.SetPadding(15);
+        _tooltip.Width = requirements == null ? new(description.Width.Pixels, 0) :
+            new(Math.Max(description.Width.Pixels, requirements.Width.Pixels) + padding * 2, 0);
+        _tooltip.Height = new(height, 0);
+
+        TooltipContainer.Append(_tooltip);
+    }
+
     public void DrawConstellationLines(SpriteBatch spriteBatch)
     {
         var dimensions = GetDimensions();
@@ -82,7 +171,8 @@ public class PerkElement : UIPanel
             var parent = parentElement.Perk;
 
             var progressiveGray = 0.5f + (float) Perk.Level / Perk.MaxLevel * 0.5f;
-            spriteBatch.DrawLine(2, dimensions.Center(), parentElement.IconPanel.GetDimensions().Center(), parent.Unlocked ? new Color(progressiveGray, progressiveGray, progressiveGray) : Color.Gray);
+            spriteBatch.DrawLine(2, dimensions.Center(), parentElement.IconPanel.GetDimensions().Center(), 
+                parent.Unlocked ? new Color(progressiveGray, progressiveGray, progressiveGray) : Color.Gray);
         }
     }
 
@@ -103,4 +193,6 @@ public class PerkElement : UIPanel
 
     public PerkIconPanel IconPanel { get; }
     public UIText LevelPanel { get; }
+
+    private UIElement TooltipContainer => Parent.Parent.Parent;
 }

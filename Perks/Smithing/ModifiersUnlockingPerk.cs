@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using TerrabornLeveling.Players;
 using WebmilioCommons.Extensions;
 
@@ -19,7 +20,24 @@ public abstract class ModifiersUnlockingPerk : Perk
 
     public override string GetDescription(int level)
     {
-        return string.Format(GetDescriptionString(), UnlockNames);
+        StringBuilder sb = new();
+
+        int lines = 1;
+        UnlockNames.Do((n, i) =>
+        {
+            if (sb.Length + n.Length > 48 * lines)
+            {
+                sb.AppendLine();
+                lines++;
+            }
+
+            sb.Append(n);
+
+            if (i + 1 < UnlockNames.Length)
+                sb.Append(", ");
+        });
+
+        return string.Format(GetDescriptionString(), sb);
     }
 
     protected abstract string GetDescriptionString();
@@ -32,5 +50,5 @@ public abstract class ModifiersUnlockingPerk : Perk
     protected abstract int RequiredSkill { get; }
 
     protected abstract int[] Unlocks { get; }
-    protected abstract object[] UnlockNames { get; }
+    protected abstract string[] UnlockNames { get; }
 }

@@ -9,8 +9,8 @@ public class Mining : Skill
     {
     }
 
-    public override string Identifier { get; } = "mining";
-    public override string Name { get; } = "Mining";
+    public override string Identifier => "mining";
+    public override string Name => "Mining";
 
     public override string Description { get; }
 }

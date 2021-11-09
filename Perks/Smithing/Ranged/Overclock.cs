@@ -1,8 +1,8 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Ranged;
 
-[Parents(typeof(ImprovedTrigger))]
+[Parents(typeof(ScopedWork))]
 public class Overclock : RangedPerk
 {
     public Overclock() : base("overclock")
@@ -11,10 +11,10 @@ public class Overclock : RangedPerk
 
     public override string Name => "Overclock";
 
-    protected override int RequiredSkill => 35;
+    protected override int RequiredSkill => 40;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Frenzying, PrefixID.Hasty };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Frenzying), nameof(PrefixID.Hasty) };
+    protected override int[] Unlocks { get; } = { Lethargic, Frenzying, Hasty, Staunch };
+    protected override string[] UnlockNames { get; } = { nameof(Lethargic), nameof(Frenzying), nameof(Hasty), nameof(Staunch) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 2));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 3));
 }

@@ -1,4 +1,4 @@
-﻿using Terraria.ID;
+﻿using static Terraria.ID.PrefixID;
 
 namespace TerrabornLeveling.Perks.Smithing.Ranged;
 
@@ -11,10 +11,10 @@ public class ExtremeModifications : RangedPerk
 
     public override string Name => "Extreme Modifications";
 
-    protected override int RequiredSkill => 95;
+    protected override int RequiredSkill => 90;
 
-    protected override int[] Unlocks { get; } = { PrefixID.Awful, PrefixID.Unreal };
-    protected override object[] UnlockNames { get; } = { nameof(PrefixID.Awful), nameof(PrefixID.Unreal) };
+    protected override int[] Unlocks { get; } = { Awful, Unreal };
+    protected override string[] UnlockNames { get; } = { nameof(Awful), nameof(Unreal) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 5));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 7));
 }

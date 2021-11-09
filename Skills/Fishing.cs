@@ -9,8 +9,8 @@ public class Fishing : Skill
     {
     }
 
-    public override string Identifier { get; } = "fishing";
-    public override string Name { get; } = "Fishing";
+    public override string Identifier => "fishing";
+    public override string Name => "Fishing";
 
-    public override string Description { get; } = "The art of patiently waiting for a bite. Those who show patience receive great reward.";
+    public override string Description => "The art of patiently waiting for a bite. Those who show patience receive great reward.";
 }
