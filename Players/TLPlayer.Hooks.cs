@@ -5,13 +5,13 @@ namespace TerrabornLeveling.Players;
 
 public partial class TLPlayer
 {
-    public override void PreUpdate() => ForUnlockedPerks(perk => perk.OnPlayerPreUpdate(this));
-    public override void PostUpdate() => ForUnlockedPerks(perk => perk.OnPlayerPostUpdate(this));
+    public override void PreUpdate() => ForUnlockedPerks(perk => perk.OnPlayerPreUpdate());
+    public override void PostUpdate() => ForUnlockedPerks(perk => perk.OnPlayerPostUpdate());
 
     public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
     {
         float x = fishingLevel;
-        ForUnlockedPerks(perk => perk.OnPlayerGetFishingLevel(this, fishingRod, bait, ref x));
+        ForUnlockedPerks(perk => perk.OnPlayerGetFishingLevel(fishingRod, bait, ref x));
         fishingLevel = x;
     }
 
@@ -19,7 +19,7 @@ public partial class TLPlayer
     {
         StatModifier x = damage;
         float y = flat;
-        ForUnlockedPerks(perk => perk.OnPlayerModifyWeaponDamage(this, item, ref x, ref y));
+        ForUnlockedPerks(perk => perk.OnPlayerModifyWeaponDamage(item, ref x, ref y));
         damage = x;
         flat = y;
     }

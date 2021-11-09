@@ -14,7 +14,7 @@ public class Overdraw : Perk
     {
     }
 
-    public override void OnPlayerModifyWeaponDamage(TLPlayer player, Item item, ref StatModifier damage, ref float flat)
+    public override void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
         if (!Bows.Is(item.type) && !Repeaters.Is(item.type)) return;
 

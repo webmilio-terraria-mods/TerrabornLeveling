@@ -13,9 +13,9 @@ public abstract class ModifiersUnlockingPerk : Perk
     {
     }
 
-    public override void OnPlayerResetEffects(TLPlayer player)
+    public override void OnPlayerResetEffects()
     {
-        Unlocks.Do(id => player.ModifiersAccess[id] = true);
+        Unlocks.Do(id => Owner.ModifiersAccess[id] = true);
     }
 
     public override string GetDescription(int level)

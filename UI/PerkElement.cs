@@ -69,7 +69,7 @@ public class PerkElement : UIPanel
 
     public void ClickPerkIcon(UIMouseEvent evt, PerkIconPanel icon, IPerk perk)
     {
-        if (perk.TryLevel(Main.LocalPlayer))
+        if (perk.TryLevel())
         {
             SoundEngine.PlaySound(SoundID.Lavafall);
         }

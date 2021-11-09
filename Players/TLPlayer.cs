@@ -29,7 +29,7 @@ public partial class TLPlayer : BetterModPlayer
         ModifiersAccess.Do((_, i) => ModifiersAccess[i] = false);
         ModifiersAccess[0] = true;
 
-        ForUnlockedPerks(perk => perk.OnPlayerResetEffects(this));
+        ForUnlockedPerks(perk => perk.OnPlayerResetEffects());
     }
 
     public void ForUnlockedPerks(Action<IPerk> action) => Skills.Do(s => s.ForUnlockedPerks(action));
@@ -44,18 +44,18 @@ public partial class TLPlayer : BetterModPlayer
     public bool AllowCraftingPrefix(Item item, int prefix)
     {
         // Check if the player has access to these modifiers.
-        return ModifiersAccess[prefix] && TrueForAllUnlockedPerks(perk => perk.AllowCraftingPrefix(this, item, prefix));
+        return ModifiersAccess[prefix] && TrueForAllUnlockedPerks(perk => perk.AllowCraftingPrefix(item, prefix));
     }
     
     public override void CraftItem(Recipe recipe, Item item)
     {
-        ForUnlockedPerks(perk => perk.OnPlayerCraftItem(this, recipe, item));
+        ForUnlockedPerks(perk => perk.OnPlayerCraftItem(recipe, item));
 
         /*while (!ModifiersAccess[item.prefix])
             item.Prefix(-1);*/
     }
 
-    private static List<ISkill> CreateSkills()
+    private List<ISkill> CreateSkills()
     {
         var provider = TerrabornLeveling.Services.GetService<ISkillTypesProvider>();
         var factory = TerrabornLeveling.Services.GetService<ISkillFactory>();
@@ -64,6 +64,8 @@ public partial class TLPlayer : BetterModPlayer
 
         foreach (var type in provider.GetSkillTypes())
             skills.Add(factory.Make(type));
+
+        skills.Do(s => s.Perks.Do(p => p.Owner = this));
 
         return skills;
     }

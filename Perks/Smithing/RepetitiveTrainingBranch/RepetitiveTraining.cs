@@ -1,8 +1,6 @@
 ﻿using Infuller.Prefix;
 using Microsoft.Xna.Framework;
-using TerrabornLeveling.Players;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace TerrabornLeveling.Perks.Smithing.RepetitiveTrainingBranch;
 
@@ -13,7 +11,7 @@ public class RepetitiveTraining : Perk
     {
     }
 
-    public override bool AllowCraftingPrefix(TLPlayer player, Item item, int prefix)
+    public override bool AllowCraftingPrefix(Item item, int prefix)
     {
         if (Prefixes.TryGet(prefix, out var alignment) && alignment >= PrefixAlignment.Neutral)
             return true;

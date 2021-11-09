@@ -1,18 +1,20 @@
 ﻿using Infuller.Items;
 using Infuller.Items.Melee;
 using TerrabornLeveling.Players;
+using TerrabornLeveling.Skills;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace TerrabornLeveling.Perks.OneHanded;
 
+[Skill(typeof(Skills.Gunplay))]
 public class Armsman : Perk
 {
     public Armsman() : base("armsman")
     {
     }
 
-    public override void OnPlayerModifyWeaponDamage(TLPlayer player, Item item, ref StatModifier damage, ref float flat)
+    public override void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
         if (!Swords.TryGet(item.type, out var hands) || !hands.HasFlag(WeaponHands.OneHanded)) return;
 

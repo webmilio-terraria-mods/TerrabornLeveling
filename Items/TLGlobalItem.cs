@@ -19,7 +19,7 @@ public class TLGlobalItem : GlobalItem
     public override bool? UseItem(Item item, Player player)
     {
         var tlPlayer = TLPlayer.Get(player);
-        tlPlayer.ForUnlockedPerks(perk => perk.OnPlayerUseItem(tlPlayer, item));
+        tlPlayer.ForUnlockedPerks(perk => perk.OnPlayerUseItem(item));
 
         return null;
     }

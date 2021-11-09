@@ -15,7 +15,7 @@ public class GunpowderJustice : Perk
     {
     }
 
-    public override void OnPlayerModifyWeaponDamage(TLPlayer player, Item item, ref StatModifier damage, ref float flat)
+    public override void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
         if (!Guns.Is(item.type)) return;
 

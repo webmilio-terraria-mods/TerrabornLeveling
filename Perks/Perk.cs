@@ -14,18 +14,18 @@ public abstract class Perk : IPerk
         Identifier = identifier;
     }
 
-    public virtual void OnPlayerResetEffects(TLPlayer player) { }
-    public virtual void OnPlayerPreUpdate(TLPlayer player) { }
-    public virtual void OnPlayerPostUpdate(TLPlayer player) { }
+    public virtual void OnPlayerResetEffects() { }
+    public virtual void OnPlayerPreUpdate() { }
+    public virtual void OnPlayerPostUpdate() { }
 
-    public virtual bool AllowCraftingPrefix(TLPlayer player, Item item, int prefix) => true;
-    public virtual void OnPlayerCraftItem(TLPlayer player, Recipe recipe, Item item) { }
-    public virtual void OnPlayerUseItem(TLPlayer player, Item item) { }
+    public virtual bool AllowCraftingPrefix(Item item, int prefix) => true;
+    public virtual void OnPlayerCraftItem(Recipe recipe, Item item) { }
+    public virtual void OnPlayerUseItem(Item item) { }
     
-    public virtual void OnPlayerGetFishingLevel(TLPlayer player, Item fishingRod, Item bait, ref float fishingLevel) { }
-    public virtual void OnPlayerModifyWeaponDamage(TLPlayer player, Item item, ref StatModifier damage, ref float flat) { }
+    public virtual void OnPlayerGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel) { }
+    public virtual void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat) { }
 
-    public bool TryLevel(Player player)
+    public bool TryLevel()
     {
         if (Level == MaxLevel)
             return false;
@@ -34,17 +34,17 @@ public abstract class Perk : IPerk
             return false;
 
         Level++;
-        OnLeveled(player);
+        OnLeveled(Owner.Player);
 
         return true;
     }
 
     protected virtual void OnLeveled(Player player) { }
 
-    public void Reset(Player player)
+    public void Reset()
     {
         Level = 0;
-        OnReset(player);
+        OnReset(Owner.Player);
     }
 
     protected virtual void OnReset(Player player) { }
@@ -60,6 +60,7 @@ public abstract class Perk : IPerk
     
     public abstract IPerkVisualDescriptor Visuals { get; }
 
+    public TLPlayer Owner { get; set; }
     public ISkill Skill { get; set; }
     public virtual IList<IPerk> Parents { get; } = new List<IPerk>();
 }

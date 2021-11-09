@@ -19,7 +19,6 @@
     <Folder Include="Items\" />
     <Folder Include="Perks\Fishing\" />
     <Folder Include="Perks\Gunplay\" />
-    <Folder Include="Perks\Destruction\" />
     <Folder Include="Perks\OneHanded\" />
   </ItemGroup>
   <ItemGroup>
