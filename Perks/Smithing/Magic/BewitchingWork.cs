@@ -16,5 +16,5 @@ public class BewitchingWork : MagicPerk
     protected override int[] Unlocks { get; } = { Furious, Taboo, Manic, Adept };
     protected override string[] UnlockNames { get; } = { nameof(Adept), nameof(Taboo), nameof(Manic), nameof(Adept) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 1));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.48f, .74f));
 }

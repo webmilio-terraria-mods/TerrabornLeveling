@@ -16,5 +16,5 @@ public class AssassinsArmory : RangedPerk
     protected override int[] Unlocks { get; } = { Awkward, Deadly };
     protected override string[] UnlockNames { get; } = { nameof(Awkward), nameof(Deadly) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 5));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.22f, .4f));
 }

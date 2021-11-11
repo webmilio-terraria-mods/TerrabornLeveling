@@ -19,6 +19,11 @@ public class TerrabornLeveling : Mod
 
     public override void Load()
     {
+        if (Development)
+        {
+            DevelopmentAction = KeybindLoader.RegisterKeybind(this, "Development Action", Keys.K);
+        }
+
         ModStore.Mods.Do(delegate(Mod mod)
         {
             mod.Code.DefinedTypes.Do(delegate(TypeInfo type)
@@ -41,10 +46,13 @@ public class TerrabornLeveling : Mod
         TextureAssets.UnloadTextures();
     }
 
-    [Keybind("Open Skills Menu", Keys.P)] public ModKeybind SkillMenu { get; set; }
-    [Keybind("Rebuild Skill Menu", Keys.L)] public ModKeybind RebuildSkillMenu { get; set; }
+    [Keybind("Open Skills Menu", Keys.P)] public ModKeybind SkillMenu { get; private set; }
+    [Keybind("Rebuild Skill Menu", Keys.L)] public ModKeybind RebuildSkillMenu { get; private set; }
+
+    public ModKeybind DevelopmentAction { get; private set; }
 
     public static TerrabornLeveling Instance { get; private set; }
-
     public static SimpleServices Services { get; private set; }
+
+    public static bool Development => true;
 }

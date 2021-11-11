@@ -36,7 +36,7 @@ public class RepetitiveTraining : Perk
     public float BadModifierMod => GetBadModifierMod(Level);
     //public float BadModifierMod => 1;
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new Vector2(.75f, .8f));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new Vector2(.69f, .88f));
 
     public static float GetBadModifierMod(int level)
     {

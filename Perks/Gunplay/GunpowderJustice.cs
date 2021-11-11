@@ -1,6 +1,5 @@
-﻿using Infuller.Items.Gun;
+﻿using Infuller.Items.Ranged.Gun;
 using Microsoft.Xna.Framework.Graphics;
-using TerrabornLeveling.Players;
 using TerrabornLeveling.Skills;
 using Terraria;
 using Terraria.ID;
@@ -15,7 +14,7 @@ public class GunpowderJustice : Perk
     {
     }
 
-    public override void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
+    public override void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
         if (!Guns.Is(item.type)) return;
 
@@ -27,13 +26,15 @@ public class GunpowderJustice : Perk
         return 0.2f * level;
     }
 
+    public override int GetRequiredSkill(int level) => StepRequiredLevel(1, 20, level);
+
     public override string GetDescription(int level)
     {
         return $"Guns do {(int)(GetDamageMultiplier(level) * 100)}% more damage.";
     }
 
-    public override string Name { get; } = "Gunpowder Justice";
-    public override int MaxLevel { get; } = 5;
+    public override string Name => "Gunpowder Justice";
+    public override int MaxLevel => 5;
 
     public float DamageMultiplier => 1 + GetDamageMultiplier(Level);
 

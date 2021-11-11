@@ -19,13 +19,13 @@ public class Patience : Perk
     {
     }
 
-    public override void OnPlayerPreUpdate()
+    public override void OnPreUpdate()
     {
         if (_currentRod != NoRod)
             _timer++;
     }
 
-    public override void OnPlayerPostUpdate()
+    public override void OnPostUpdate()
     {
         if (_currentRod == NoRod)
             return;
@@ -37,12 +37,12 @@ public class Patience : Perk
         }
     }
 
-    public override void OnPlayerGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
+    public override void OnGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
     {
         fishingLevel *= FishingPowerBonus;
     }
 
-    public override void OnPlayerUseItem(Item item)
+    public override void OnUseItem(Item item)
     {
         if (item.fishingPole == 0)
         {

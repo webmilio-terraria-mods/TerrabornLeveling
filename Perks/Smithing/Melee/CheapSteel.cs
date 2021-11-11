@@ -16,5 +16,5 @@ public class CheapSteel : MeleePerk
     protected override int[] Unlocks { get; } = { Heavy, Light, Bulky, Pointy };
     protected override string[] UnlockNames { get; } = { nameof(Heavy), nameof(Light), nameof(Bulky), nameof(Pointy) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 1));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.17f, .955f));
 }

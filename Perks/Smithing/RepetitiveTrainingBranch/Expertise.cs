@@ -15,5 +15,5 @@ public class Expertise : Perk
     }
 
     public override string Name => "Expertise";
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.75f, .4f));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.7f, .5f));
 }

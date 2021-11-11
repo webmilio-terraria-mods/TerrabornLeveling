@@ -56,14 +56,49 @@ public class PerkElement : UIPanel
         BackgroundColor = BorderColor = Color.Transparent;
     }
 
+    private bool _dragging;
+    private bool _mouseRight;
+
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+
+        if (_dragging)
+        {
+            if (!_mouseRight && Main.mouseRight && !IconPanel.IsMouseHovering) // Just making sure you can drop if not hovering cause it happens...
+            {
+                _dragging = false;
+            }
+
+            _mouseRight = false;
+
+            var dimensions = Parent.GetDimensions();
+            var rectangle = dimensions.ToRectangle();
+            var mouse = Main.MouseScreen;
+
+            float xPerc = Math.Clamp((mouse.X - rectangle.X) / (float)rectangle.Width, 0, 1);
+            float yPerc = Math.Clamp((mouse.Y - rectangle.Y) / (float)rectangle.Height, 0, 1);
+
+            HAlign = xPerc;
+            VAlign = yPerc;
+
+            Perk.Visuals.Position = new(xPerc, yPerc);
+            Recalculate();
+        }
 
         if (Perk.MaxLevel > 1 && Perk.Level != _lastLevelUpdate)
         {
             LevelPanel.SetText($"{Perk.Level}/{Perk.MaxLevel}");
             _lastLevelUpdate = Perk.Level;
+        }
+    }
+
+    public override void RightClick(UIMouseEvent evt)
+    {
+        if (DragAndDrop)
+        {
+            _dragging = !_dragging;
+            _mouseRight = true;
         }
     }
 
@@ -77,7 +112,7 @@ public class PerkElement : UIPanel
 
     public override void MouseOver(UIMouseEvent evt)
     {
-        if (_tooltip == null) // ô.o Strange
+        if (_tooltip == null && !_dragging)
         {
             BuildTooltip();
         }
@@ -183,6 +218,8 @@ public class PerkElement : UIPanel
 
     public void DrawHoverText(SpriteBatch spriteBatch)
     {
+        if (_dragging) return;
+
         IconPanel.DrawHover(spriteBatch);
     }
 
@@ -195,4 +232,6 @@ public class PerkElement : UIPanel
     public UIText LevelPanel { get; }
 
     private UIElement TooltipContainer => Parent.Parent.Parent;
+
+    public static bool DragAndDrop => TerrabornLeveling.Development;
 }

@@ -7,17 +7,17 @@ using Terraria.ModLoader;
 
 namespace TerrabornLeveling.Perks.OneHanded;
 
-[Skill(typeof(Skills.Gunplay))]
+[Skill(typeof(Skills.OneHanded))]
 public class Armsman : Perk
 {
     public Armsman() : base("armsman")
     {
     }
 
-    public override void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
+    public override void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
-        if (!Swords.TryGet(item.type, out var hands) || !hands.HasFlag(WeaponHands.OneHanded)) return;
-
+        if (!Swords.TryGet(item.type, out var record) || !record.Hands.HasFlag(WeaponHands.OneHanded)) return;
+        
         damage *= DamageMultiplier;
     }
 

@@ -11,7 +11,7 @@ public class MasterBaiter : Perk
     {
     }
 
-    public override void OnPlayerGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
+    public override void OnGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
     {
         fishingLevel += 0.05f * Level;
     }

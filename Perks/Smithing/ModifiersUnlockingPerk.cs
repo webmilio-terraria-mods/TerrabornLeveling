@@ -13,7 +13,7 @@ public abstract class ModifiersUnlockingPerk : Perk
     {
     }
 
-    public override void OnPlayerResetEffects()
+    public override void OnResetEffects()
     {
         Unlocks.Do(id => Owner.ModifiersAccess[id] = true);
     }

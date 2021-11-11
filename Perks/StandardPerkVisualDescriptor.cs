@@ -49,7 +49,7 @@ public class StandardPerkVisualDescriptor : IPerkVisualDescriptor
         spriteBatch.Draw(Icon.Value, location - new Vector2(0, 1), null, color, 0, new Vector2(Size.X / 2f, Size.Y / 2f), scale, SpriteEffects.None, 0);
     }
 
-    public Vector2 Position { get; }
+    public Vector2 Position { get; set; }
 
     public Vector2 Size
     {

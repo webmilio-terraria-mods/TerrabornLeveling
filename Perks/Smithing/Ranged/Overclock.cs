@@ -16,5 +16,5 @@ public class Overclock : RangedPerk
     protected override int[] Unlocks { get; } = { Lethargic, Frenzying, Hasty, Staunch };
     protected override string[] UnlockNames { get; } = { nameof(Lethargic), nameof(Frenzying), nameof(Hasty), nameof(Staunch) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 3));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.26f, .55f));
 }

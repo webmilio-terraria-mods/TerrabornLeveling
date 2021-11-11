@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../tModLoader.targets" />
+  <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
     <AssemblyName>TerrabornLeveling</AssemblyName>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -14,12 +14,6 @@
     <ProjectReference Include="..\Infuller\Infuller.csproj" />
     <ProjectReference Include="..\TerrabornCore\TerrabornCore.csproj" />
     <ProjectReference Include="..\WebmilioCommons\WebmilioCommons.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Items\" />
-    <Folder Include="Perks\Fishing\" />
-    <Folder Include="Perks\Gunplay\" />
-    <Folder Include="Perks\OneHanded\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Assets\Textures\Skill_Experience_Bar.png">

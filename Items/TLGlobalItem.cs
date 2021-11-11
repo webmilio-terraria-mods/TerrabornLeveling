@@ -16,10 +16,15 @@ public class TLGlobalItem : GlobalItem
         return TLPlayer.Get().AllowCraftingPrefix(item, pre);
     }
 
+    public override void UpdateInventory(Item item, Player player)
+    {
+        TLPlayer.Get(player).UpdateInventory(item);
+    }
+
     public override bool? UseItem(Item item, Player player)
     {
         var tlPlayer = TLPlayer.Get(player);
-        tlPlayer.ForUnlockedPerks(perk => perk.OnPlayerUseItem(item));
+        tlPlayer.ForUnlockedPerks(perk => perk.OnUseItem(item));
 
         return null;
     }

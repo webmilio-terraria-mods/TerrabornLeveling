@@ -16,5 +16,5 @@ public class AcaciaMelanoxylonProcess : MeleePerk
     protected override int[] Unlocks { get; } = { Shameful, Tiny, Sharp, Massive };
     protected override string[] UnlockNames { get; } = { nameof(Shameful), nameof(Tiny), nameof(Sharp), nameof(Massive) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 5));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.032f, .61f));
 }

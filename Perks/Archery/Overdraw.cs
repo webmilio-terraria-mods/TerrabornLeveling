@@ -1,9 +1,8 @@
-﻿using TerrabornLeveling.Players;
+﻿using Infuller.Items.Ranged.Bow;
+using Infuller.Items.Ranged.Repeater;
 using TerrabornLeveling.Skills;
 using Terraria;
 using Terraria.ModLoader;
-using Infuller.Items.Bow;
-using Infuller.Items.Repeater;
 
 namespace TerrabornLeveling.Perks.Archery;
 
@@ -14,7 +13,7 @@ public class Overdraw : Perk
     {
     }
 
-    public override void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
+    public override void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
         if (!Bows.Is(item.type) && !Repeaters.Is(item.type)) return;
 
@@ -26,13 +25,15 @@ public class Overdraw : Perk
         return 0.2f * level;
     }
 
+    public override int GetRequiredSkill(int level) => StepRequiredLevel(1, 20, level);
+
     public override string GetDescription(int level)
     {
         return $"Bows do {(int)(GetDamageMultiplier(level) * 100)}% more damage.";
     }
 
-    public override string Name { get; } = "Overdraw";
-    public override int MaxLevel { get; } = 5;
+    public override string Name => "Overdraw";
+    public override int MaxLevel => 5;
 
     public float DamageMultiplier => 1 + GetDamageMultiplier(Level);
 

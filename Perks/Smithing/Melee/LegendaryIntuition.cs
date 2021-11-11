@@ -16,5 +16,5 @@ public class LegendaryIntuition : MeleePerk
     protected override int[] Unlocks { get; } = { PrefixID.Terrible, PrefixID.Legendary };
     protected override string[] UnlockNames { get; } = { nameof(PrefixID.Terrible), nameof(PrefixID.Legendary) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 9));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.135f, .014f));
 }

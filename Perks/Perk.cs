@@ -14,16 +14,19 @@ public abstract class Perk : IPerk
         Identifier = identifier;
     }
 
-    public virtual void OnPlayerResetEffects() { }
-    public virtual void OnPlayerPreUpdate() { }
-    public virtual void OnPlayerPostUpdate() { }
+    public virtual void OnResetEffects() { }
+    public virtual void OnPreUpdate() { }
+    public virtual void OnPostUpdate() { }
 
     public virtual bool AllowCraftingPrefix(Item item, int prefix) => true;
-    public virtual void OnPlayerCraftItem(Recipe recipe, Item item) { }
-    public virtual void OnPlayerUseItem(Item item) { }
-    
-    public virtual void OnPlayerGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel) { }
-    public virtual void OnPlayerModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat) { }
+    public virtual void OnCraftItem(Recipe recipe, Item item) { }
+    public virtual void OnUseItem(Item item) { }
+    public virtual void OnUpdateInventoryItem(Item item) { }
+
+    public virtual void OnGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel) { }
+
+    public virtual void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat) { }
+    public virtual void OnModifyManaCost(Item item, ref float reduce, ref float mult) { }
 
     public bool TryLevel()
     {
@@ -40,6 +43,11 @@ public abstract class Perk : IPerk
     }
 
     protected virtual void OnLeveled(Player player) { }
+
+    public static int StepRequiredLevel(int startLevel, int jump, int desiredLevel)
+    {
+        return desiredLevel == 1 ? startLevel : jump * desiredLevel;
+    }
 
     public void Reset()
     {

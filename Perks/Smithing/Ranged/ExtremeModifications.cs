@@ -16,5 +16,5 @@ public class ExtremeModifications : RangedPerk
     protected override int[] Unlocks { get; } = { Awful, Unreal };
     protected override string[] UnlockNames { get; } = { nameof(Awful), nameof(Unreal) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 7));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.27f, .17f));
 }

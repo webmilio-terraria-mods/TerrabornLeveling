@@ -29,7 +29,7 @@ public partial class TLPlayer : BetterModPlayer
         ModifiersAccess.Do((_, i) => ModifiersAccess[i] = false);
         ModifiersAccess[0] = true;
 
-        ForUnlockedPerks(perk => perk.OnPlayerResetEffects());
+        ForUnlockedPerks(perk => perk.OnResetEffects());
     }
 
     public void ForUnlockedPerks(Action<IPerk> action) => Skills.Do(s => s.ForUnlockedPerks(action));
@@ -49,7 +49,7 @@ public partial class TLPlayer : BetterModPlayer
     
     public override void CraftItem(Recipe recipe, Item item)
     {
-        ForUnlockedPerks(perk => perk.OnPlayerCraftItem(recipe, item));
+        ForUnlockedPerks(perk => perk.OnCraftItem(recipe, item));
 
         /*while (!ModifiersAccess[item.prefix])
             item.Prefix(-1);*/

@@ -16,5 +16,5 @@ public class DangerousGrinding : MeleePerk
     protected override int[] Unlocks { get; } = { PrefixID.Unhappy, PrefixID.Savage };
     protected override string[] UnlockNames { get; } = { nameof(PrefixID.Unhappy), nameof(PrefixID.Savage) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 7));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(0, .287f));
 }

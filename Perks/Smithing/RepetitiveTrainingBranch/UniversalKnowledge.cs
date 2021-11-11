@@ -27,5 +27,5 @@ public class UniversalKnowledge : ModifiersUnlockingPerk
         nameof(Shoddy), nameof(Strong), nameof(Superior), nameof(Unpleasant), nameof(Weak), nameof(Zealous)
     };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.75f, .6f));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.75f, .66f));
 }

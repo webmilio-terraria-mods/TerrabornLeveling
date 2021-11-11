@@ -1,7 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TerrabornLeveling.Perks;
 using TerrabornLeveling.Players;
+using TerrabornLeveling.Skills;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
@@ -51,6 +58,41 @@ public class SkillsMenu : UIState
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+
+        if (TerrabornLeveling.Development)
+        {
+            if (TerrabornLeveling.Instance.DevelopmentAction.JustPressed && OperatingSystem.IsWindows())
+            {
+                var path = $"{Environment.GetEnvironmentVariable("tmp")}\\{Path.GetRandomFileName()}.txt";
+
+                using FileStream fs = File.OpenWrite(path);
+                using StreamWriter sw = new(fs);
+
+                List<IPerk> sortedPerks = new(_skills[_activeSkill].Skill.Perks);
+                sortedPerks.Sort((x, y) => x.Name.CompareTo(y.Name));
+                    
+                sortedPerks.Do(delegate (IPerk perk)
+                {
+                    sw.WriteLine(new StringBuilder()
+                        .Append(perk.GetType().Name)
+                        .Append(": ")
+                        .Append(perk.Name)
+                        .Append(": ")
+                        .AppendFormat("{0},{1}", perk.Visuals.Position.X, perk.Visuals.Position.Y)
+                        .ToString());
+                });
+
+                try
+                {
+                    Process.Start("notepad",path);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+
         var keys = ModContent.GetInstance<KeyboardManager>();
 
         UpdateCameraPosition();

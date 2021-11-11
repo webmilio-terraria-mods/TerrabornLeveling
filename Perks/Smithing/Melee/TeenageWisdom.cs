@@ -16,5 +16,5 @@ public class TeenageWisdom : MeleePerk
     protected override int[] Unlocks { get; } = { Dull, Small, Large, Sharp };
     protected override string[] UnlockNames { get; } = { nameof(Dull), nameof(Small), nameof(Large), nameof(Sharp) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 3));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.0076f, .815f));
 }

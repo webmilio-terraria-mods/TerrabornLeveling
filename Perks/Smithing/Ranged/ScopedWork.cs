@@ -16,5 +16,5 @@ public class ScopedWork : RangedPerk
     protected override int[] Unlocks { get; } = { Sighted, Powerful, Rapid, Intimidating };
     protected override string[] UnlockNames { get; } = { nameof(Sighted), nameof(Powerful), nameof(Rapid), nameof(Intimidating) };
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(XPosition, YPosition - YOffset * 1));
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(.19f, .74f));
 }
