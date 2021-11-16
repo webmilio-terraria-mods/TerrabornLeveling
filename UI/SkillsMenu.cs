@@ -78,7 +78,7 @@ public class SkillsMenu : UIState
                         .Append(": ")
                         .Append(perk.Name)
                         .Append(": ")
-                        .AppendFormat("{0},{1}", perk.Visuals.Position.X, perk.Visuals.Position.Y)
+                        .AppendFormat("{0}f,{1}f", perk.Visuals.Position.X, perk.Visuals.Position.Y)
                         .ToString());
                 });
 

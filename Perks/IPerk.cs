@@ -8,20 +8,27 @@ namespace TerrabornLeveling.Perks;
 
 public interface IPerk
 {
+    public virtual void OnResetEffects() { }
+    public virtual void OnPreUpdate() { }
+    public virtual void OnUpdateEquips() { }
+    public virtual void OnUpdateLifeRegen() { }
+    public virtual void OnPostUpdate() { }
+
     public virtual bool AllowCraftingPrefix(Item item, int prefix) => true;
     public virtual void OnCraftItem(Recipe recipe, Item item) { }
     public virtual void OnUpdateInventoryItem(Item item) { }
     public virtual void OnUseItem(Item item) { }
 
     public virtual void OnGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel) { }
-    
+
     public virtual void OnModifyManaCost(Item item, ref float reduce, ref float mult) { }
     public virtual void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat) { }
 
-    public virtual void OnPreUpdate() { }
-    public virtual void OnPostUpdate() { }
+    /// <summary>Only called on local clients.</summary>
+    /// <param name="type">Tile type.</param>
+    public virtual void OnRightClickTile(int i, int j, int type) { }
 
-    public virtual void OnResetEffects() { }
+    public virtual void OnContextActionKeybind() { }
 
     public bool TryLevel();
     public void Reset();

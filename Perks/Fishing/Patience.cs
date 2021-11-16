@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Text;
-using TerrabornLeveling.Players;
-using TerrabornLeveling.Skills;
 using Terraria;
 using WebmilioCommons;
 
@@ -42,6 +39,16 @@ public class Patience : Perk
         fishingLevel *= FishingPowerBonus;
     }
 
+    public static float GetFishingPowerBonus(int level)
+    {
+        return 1 + level * .005f;
+    }
+
+    public static float GetFishingPowerBonus(int level, int seconds)
+    {
+        return (float)Math.Pow(GetFishingPowerBonus(level), seconds);
+    }
+
     public override void OnUseItem(Item item)
     {
         if (item.fishingPole == 0)
@@ -56,24 +63,17 @@ public class Patience : Perk
 
     public override string GetDescription(int level)
     {
-        return $"For every second without reeling in, increase your fishing power by {Math.Round((GetFishingPowerBonus(level) - 1) * 100, 2)}% (compounding).\nEffect is lost upon reeling in.";
+        return
+            $"For every second without reeling in, increase your fishing power by {Math.Round((GetFishingPowerBonus(level) - 1) * 100, 2)}% (compounding).\n" +
+            "Effect is lost upon reeling in.";
     }
 
-    public override string Name { get; } = "Virtuous Patience";
+    public override int GetRequiredSkill(int level) => level * 20 + 5;
 
-    public override int MaxLevel { get; } = 2;
+    public override string Name => "Virtuous Patience";
+    public override int MaxLevel => 2;
 
     public float FishingPowerBonus => GetFishingPowerBonus(Level, _timer / Constants.TicksPerSecond);
 
-    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(0.35f, 0.7f));
-
-    public static float GetFishingPowerBonus(int level)
-    {
-        return 1 + level * .005f;
-    }
-
-    public static float GetFishingPowerBonus(int level, int seconds)
-    {
-        return (float)Math.Pow(GetFishingPowerBonus(level), seconds);
-    }
+    public override IPerkVisualDescriptor Visuals { get; } = new StandardPerkVisualDescriptor(new(0.33460075f, 0.6236559f));
 }

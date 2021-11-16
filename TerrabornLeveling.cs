@@ -47,6 +47,8 @@ public class TerrabornLeveling : Mod
     }
 
     [Keybind("Open Skills Menu", Keys.P)] public ModKeybind SkillMenu { get; private set; }
+    [Keybind("Context Action", Keys.O)] public ModKeybind ContextAction { get; private set; }
+
     [Keybind("Rebuild Skill Menu", Keys.L)] public ModKeybind RebuildSkillMenu { get; private set; }
 
     public ModKeybind DevelopmentAction { get; private set; }

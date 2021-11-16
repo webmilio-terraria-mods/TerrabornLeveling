@@ -22,7 +22,7 @@ public class Overdraw : Perk
 
     public static float GetDamageMultiplier(int level)
     {
-        return 0.2f * level;
+        return .2f * level;
     }
 
     public override int GetRequiredSkill(int level) => StepRequiredLevel(1, 20, level);

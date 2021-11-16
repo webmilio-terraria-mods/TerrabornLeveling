@@ -16,6 +16,8 @@ public abstract class Perk : IPerk
 
     public virtual void OnResetEffects() { }
     public virtual void OnPreUpdate() { }
+    public virtual void OnUpdateEquips() { }
+    public virtual void OnUpdateLifeRegen() { }
     public virtual void OnPostUpdate() { }
 
     public virtual bool AllowCraftingPrefix(Item item, int prefix) => true;
@@ -27,6 +29,12 @@ public abstract class Perk : IPerk
 
     public virtual void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat) { }
     public virtual void OnModifyManaCost(Item item, ref float reduce, ref float mult) { }
+
+    public virtual void OnRightClickTile(int x, int y, int type) { }
+
+    public virtual void OnContextActionKeybind() { }
+
+    
 
     public bool TryLevel()
     {
@@ -46,7 +54,14 @@ public abstract class Perk : IPerk
 
     public static int StepRequiredLevel(int startLevel, int jump, int desiredLevel)
     {
-        return desiredLevel == 1 ? startLevel : jump * desiredLevel;
+        // Not the most epic of methods.
+        if (desiredLevel == 1)
+            return startLevel;
+
+        if (startLevel > 1)
+            return startLevel + jump * desiredLevel;
+        
+        return jump * desiredLevel;
     }
 
     public void Reset()

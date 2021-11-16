@@ -38,7 +38,7 @@ public partial class TLPlayer : BetterModPlayer
     public override void OnEnterWorld(Player player)
     {
         Mod.Logger.Info($"Loaded {Skills.Count} skill(s) for player {player.name}.");
-        ModContent.GetInstance<TerrabornLevelingSystem>().Layer.State.PopulateSkills(this);
+        ModContent.GetInstance<TLSystem>().Layer.State.PopulateSkills(this);
     }
 
     public bool AllowCraftingPrefix(Item item, int prefix)
