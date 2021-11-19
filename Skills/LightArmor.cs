@@ -13,4 +13,6 @@ public class LightArmor : Skill
     public override string Name => "Light Armor";
 
     public override string Description => string.Empty;
+
+    public override int Category => (int)SkillCategory.Physical;
 }

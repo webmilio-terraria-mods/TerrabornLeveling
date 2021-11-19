@@ -34,10 +34,11 @@ public partial class TLPlayer
         flat = rFlat;
     }
 
+    public override void PostUpdate() => ForUnlockedPerks(perk => perk.OnPostUpdate());
     public override void PreUpdate() => ForUnlockedPerks(perk => perk.OnPreUpdate());
+    public override void PreUpdateBuffs() => ForUnlockedPerks(perk => perk.OnPreUpdateBuffs());
     public override void UpdateEquips() => ForUnlockedPerks(perk => perk.OnUpdateEquips());
     public override void UpdateLifeRegen() => ForUnlockedPerks(perk => perk.OnUpdateLifeRegen());
-    public override void PostUpdate() => ForUnlockedPerks(perk => perk.OnPostUpdate());
 
     public void UpdateInventory(Item item)
     {

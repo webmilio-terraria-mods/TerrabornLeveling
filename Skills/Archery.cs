@@ -10,8 +10,9 @@ public class Archery : Skill
     }
 
     public override string Identifier => "archery";
-
     public override string Name => "Archery";
 
     public override string Description => "";
+
+    public override int Category => (int)SkillCategory.Agility;
 }

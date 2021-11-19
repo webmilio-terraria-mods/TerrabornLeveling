@@ -34,5 +34,7 @@ public interface ISkill
 
     public int LegendaryLevel { get; }
 
+    public int Category { get; }
+
     public IList<IPerk> Perks { get; }
 }

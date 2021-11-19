@@ -13,4 +13,6 @@ public class Destruction : Skill
     public override string Name => "Destruction";
 
     public override string Description => string.Empty;
+
+    public override int Category => (int)SkillCategory.Magical;
 }

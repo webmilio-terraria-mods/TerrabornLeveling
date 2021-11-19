@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using TerrabornLeveling.Perks.Mining;
+using TerrabornLeveling.Perks.Physical.Mining;
 using TerrabornLeveling.Players;
 using Terraria;
 using Terraria.ID;

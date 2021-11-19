@@ -13,4 +13,6 @@ public class Fishing : Skill
     public override string Name => "Fishing";
 
     public override string Description => "The art of patiently waiting for a bite. Those who show patience receive great reward.";
+
+    public override int Category => (int)SkillCategory.Agility;
 }

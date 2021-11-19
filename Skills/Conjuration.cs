@@ -13,4 +13,6 @@ public class Conjuration : Skill
     public override string Name => "Conjuration";
 
     public override string Description => string.Empty;
+
+    public override int Category => (int)SkillCategory.Magical;
 }

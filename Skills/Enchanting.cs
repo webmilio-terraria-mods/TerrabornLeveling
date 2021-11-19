@@ -13,4 +13,6 @@ public class Enchanting : Skill
     public override string Name => "Enchanting";
 
     public override string Description => string.Empty;
+
+    public override int Category => (int)SkillCategory.Magical;
 }

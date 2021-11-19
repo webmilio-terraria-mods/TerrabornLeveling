@@ -13,4 +13,6 @@ public class OneHanded : Skill
     public override string Name => "One Handed";
 
     public override string Description => string.Empty;
+
+    public override int Category => (int)SkillCategory.Physical;
 }

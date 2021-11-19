@@ -26,6 +26,8 @@ public abstract class Skill : ISkill
 
     public virtual int LegendaryLevel { get; }
 
+    public abstract int Category { get; }
+
     public virtual IList<IPerk> Perks { get; }
 
     public float ExperienceRequired(int target) => ExperienceRequried(Level, target);

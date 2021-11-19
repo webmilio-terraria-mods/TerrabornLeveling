@@ -13,4 +13,6 @@ public class Mining : Skill
     public override string Name => "Mining";
 
     public override string Description => "";
+
+    public override int Category => (int)SkillCategory.Physical;
 }

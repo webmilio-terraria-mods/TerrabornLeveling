@@ -13,4 +13,6 @@ public class Speech : Skill
     public override string Name => "Speech";
 
     public override string Description => string.Empty;
+
+    public override int Category => (int)SkillCategory.Agility;
 }

@@ -13,4 +13,6 @@ public class Alchemy : Skill
     public override string Name => "Alchemy";
 
     public override string Description => string.Empty;
+
+    public override int Category => (int)SkillCategory.Magical;
 }

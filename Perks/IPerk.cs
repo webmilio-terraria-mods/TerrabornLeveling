@@ -8,11 +8,13 @@ namespace TerrabornLeveling.Perks;
 
 public interface IPerk
 {
-    public virtual void OnResetEffects() { }
+    public virtual void OnPostUpdate() { }
     public virtual void OnPreUpdate() { }
+    public virtual void OnPreUpdateBuffs() { }
+    public virtual void OnResetEffects() { }
     public virtual void OnUpdateEquips() { }
     public virtual void OnUpdateLifeRegen() { }
-    public virtual void OnPostUpdate() { }
+    
 
     public virtual bool AllowCraftingPrefix(Item item, int prefix) => true;
     public virtual void OnCraftItem(Recipe recipe, Item item) { }

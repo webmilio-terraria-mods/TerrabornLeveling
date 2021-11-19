@@ -14,11 +14,12 @@ public abstract class Perk : IPerk
         Identifier = identifier;
     }
 
-    public virtual void OnResetEffects() { }
+    public virtual void OnPostUpdate() { }
     public virtual void OnPreUpdate() { }
+    public virtual void OnPreUpdateBuffs() { }
+    public virtual void OnResetEffects() { }
     public virtual void OnUpdateEquips() { }
     public virtual void OnUpdateLifeRegen() { }
-    public virtual void OnPostUpdate() { }
 
     public virtual bool AllowCraftingPrefix(Item item, int prefix) => true;
     public virtual void OnCraftItem(Recipe recipe, Item item) { }
@@ -34,23 +35,35 @@ public abstract class Perk : IPerk
 
     public virtual void OnContextActionKeybind() { }
 
-    
-
     public bool TryLevel()
     {
+        if (!PreTryLevel())
+            return false;
+
+        if (!TerrabornLeveling.Development && Level < Skill.Level)
+            return false;
+
         if (Level == MaxLevel)
             return false;
 
         if (Parents.Count > 0 && !Parents.Any(p => p.Unlocked))
             return false;
 
+        if (!PreLevel())
+            return false;
+
         Level++;
-        OnLeveled(Owner.Player);
+        OnLeveled();
 
         return true;
     }
 
-    protected virtual void OnLeveled(Player player) { }
+    protected virtual bool PreTryLevel() => true;
+
+    protected virtual bool PreLevel() => true;
+    protected virtual void OnLeveled() { }
+
+    public static int StepRequiredLevel(int jumps, int desiredLevel) => StepRequiredLevel(jumps, jumps, desiredLevel);
 
     public static int StepRequiredLevel(int startLevel, int jump, int desiredLevel)
     {
@@ -59,7 +72,7 @@ public abstract class Perk : IPerk
             return startLevel;
 
         if (startLevel > 1)
-            return startLevel + jump * desiredLevel;
+            return startLevel + jump * (desiredLevel - 1);
         
         return jump * desiredLevel;
     }
@@ -79,8 +92,8 @@ public abstract class Perk : IPerk
     public abstract string Name { get; }
 
     public virtual int Level { get; set; }
-    public virtual int MaxLevel { get; } = 1;
-    
+    public virtual int MaxLevel => 1;
+
     public abstract IPerkVisualDescriptor Visuals { get; }
 
     public TLPlayer Owner { get; set; }

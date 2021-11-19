@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -48,6 +49,7 @@ public class SkillsMenu : UIState
         container.RemoveAllChildren();
 
         _skills = new SkillElement[player.Skills.Count];
+
         player.Skills.Do((skill, i) => container.Append(_skills[i] = new SkillElement(skill, i, OnSkillElementClick)));
 
         _activeSkill = _skills.Length / 2;
