@@ -20,7 +20,7 @@ public class ManaFlow : Perk
 
     public override void OnPreUpdate()
     {
-        Owner.Player.manaRegen += (int)ManaRegenBuff * 2;
+        Owner.Player.manaRegen += (int)ManaRegenBuff;
     }
 
     protected override bool PreTryLevel() => _conditions[Level].Check(Owner);
