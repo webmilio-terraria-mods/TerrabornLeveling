@@ -1,5 +1,4 @@
 ﻿using TerrabornLeveling.Perks.Visualisers;
-using Terraria.DataStructures;
 using Terraria.ID;
 
 namespace TerrabornLeveling.Perks.Physical.Block;
