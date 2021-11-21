@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Terraria.ID;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -20,7 +21,18 @@ public class PerkVisualDescriptor : IPerkVisualDescriptor
     public PerkVisualDescriptor(Vector2 position, Asset<Texture2D> icon)
     {
         Position = position;
+
         Icon = icon;
+        if (!icon.IsLoaded)
+        {
+            Main.Assets.Request<Texture2D>(icon.Name, AssetRequestMode.ImmediateLoad);
+        }
+
+        var glow = TextureAssets.Projectile[ProjectileID.SandnadoHostileMark];
+        if (!glow.IsLoaded)
+        {
+            Main.Assets.Request<Texture2D>(glow.Name, AssetRequestMode.ImmediateLoad);
+        }
     }
 
     public PerkVisualDescriptor(Vector2 position, Vector2 size, Asset<Texture2D> icon) : this(position, icon)
@@ -41,6 +53,9 @@ public class PerkVisualDescriptor : IPerkVisualDescriptor
         {
             scale = Scale + .5f;
         }
+
+        if (perk.Unlocked)
+            spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.SandnadoHostileMark].Value, location - new Vector2(0, 1), null, new Color(0.55f, 0.55f, 0.55f), Rotation, new(36,36), scale, SpriteEffects.None, 0);
 
         DrawIcon(spriteBatch, Icon, location, perk.Unlocked ? _unlockedColor : _lockedColor, scale);
     } 
