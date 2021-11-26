@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Infuller.Items.Armors;
 using TerrabornLeveling.Perks;
 using TerrabornLeveling.Skills;
 using TerrabornLeveling.Skills.Factories;
@@ -29,7 +30,20 @@ public partial class TLPlayer : BetterModPlayer
         ModifiersAccess.Do((_, i) => ModifiersAccess[i] = false);
         ModifiersAccess[0] = true;
 
+        HeavyPenalty = true;
+
         ForUnlockedPerks(perk => perk.OnResetEffects());
+    }
+
+    public override void UpdateEquips()
+    {
+        ForUnlockedPerks(perk => perk.OnUpdateEquips());
+
+        if (HeavyPenalty)
+        {
+            Player.maxRunSpeed *= .8f;
+            Player.maxFallSpeed *= 1.2f;
+        }
     }
 
     public void ForUnlockedPerks(Action<IPerk> action) => Skills.Do(s => s.ForUnlockedPerks(action));
@@ -88,4 +102,7 @@ public partial class TLPlayer : BetterModPlayer
 
     public bool[] ModifiersAccess { get; }
     public float BadModifierMod { get; }
+
+    public bool ChestHeavy => Armors.TryGet(Player.armor[1].type, out var record) && record.Type == ArmorType.Heavy;
+    public bool HeavyPenalty { get; set; }
 }

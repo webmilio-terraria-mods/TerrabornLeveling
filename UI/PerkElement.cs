@@ -107,6 +107,8 @@ public class PerkElement : UIPanel
         if (perk.TryLevel())
         {
             SoundEngine.PlaySound(SoundID.Lavafall);
+            MouseOut(evt);
+            MouseOver(evt);
         }
     }
 

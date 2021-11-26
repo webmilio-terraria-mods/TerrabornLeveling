@@ -22,7 +22,7 @@ public class CaveDweller : Perk
 
     public override string GetDescription(int level)
     {
-        return $"Mining speed multiplied by {(int)(1 + GetMiningSpeedMultiplier(level)) * 100}%.";
+        return $"Mining speed multiplied by {(int)(GetMiningSpeedMultiplier(level) * 100)}%.";
     }
 
     public override int GetRequiredSkill(int level) => StepRequiredLevel(1, 20, level);

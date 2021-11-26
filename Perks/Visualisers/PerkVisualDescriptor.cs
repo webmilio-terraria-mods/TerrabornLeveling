@@ -23,9 +23,17 @@ public class PerkVisualDescriptor : IPerkVisualDescriptor
         Position = position;
 
         Icon = icon;
-        if (!icon.IsLoaded)
+
+        try
         {
-            Main.Assets.Request<Texture2D>(icon.Name, AssetRequestMode.ImmediateLoad);
+            if (!icon.IsLoaded && icon.State != AssetState.Loading)
+            {
+                Main.Assets.Request<Texture2D>(icon.Name, AssetRequestMode.ImmediateLoad);
+            }
+        }
+        catch (AssetLoadException)
+        {
+            TerrabornLeveling.Instance.Logger.Info($"Failed to load asset {icon.Name} for perk visual descriptor .");
         }
 
         var glow = TextureAssets.Projectile[ProjectileID.SandnadoHostileMark];

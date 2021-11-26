@@ -19,6 +19,7 @@ public class IconTagsPerkVisualDescriptor : PerkVisualDescriptor
 
     private static readonly Vector2 _size = new(Width, Height);
     private static readonly Vector2 _origin = new(Width / 2, Height / 2);
+
     private static readonly Asset<Texture2D> _texture = Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Tags_Shadow");
 
     private readonly Rectangle _sourceRectangle;

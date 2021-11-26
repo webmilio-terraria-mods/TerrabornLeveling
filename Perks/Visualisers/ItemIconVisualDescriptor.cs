@@ -2,13 +2,14 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 
 namespace TerrabornLeveling.Perks.Visualisers;
 
 public class ItemIconVisualDescriptor : PerkVisualDescriptor
 {
-    public ItemIconVisualDescriptor(Vector2 position, int type) : base(position, Main.Assets.Request<Texture2D>($"Images/Item_{type}"))
+    public ItemIconVisualDescriptor(Vector2 position, int type) : base(position, TextureAssets.Item[type])
     {
         Type = type;
     }

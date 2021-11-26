@@ -21,7 +21,7 @@ public abstract class ManaEfficiencyPerk : Perk
     public override void OnModifyManaCost(Item item, ref float reduce, ref float mult)
     {
         if (item.mana <= 0 || item.OriginalRarity > UpperRarity || 
-            !Magics.TryGet(item.type, out var magicRecord) || !magicRecord.EffectType.HasFlag(MagicEffectType.Attack))
+            !Magics.TryGet(item.type, out var record) || !record.EffectType.HasFlag(MagicEffectType.Attack))
             return;
 
         if (item.rare < LowerRarity)
