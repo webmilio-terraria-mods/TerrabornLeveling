@@ -10,9 +10,6 @@ public class Restoration : Skill
     }
 
     public override string Identifier => "restoration";
-    public override string Name => "Restoration";
-
-    public override string Description => string.Empty;
 
     public override int Category => (int)SkillCategory.Magical;
 }

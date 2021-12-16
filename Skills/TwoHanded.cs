@@ -10,9 +10,6 @@ public class TwoHanded : Skill
     }
 
     public override string Identifier => "twohanded";
-    public override string Name => "Two Handed";
-
-    public override string Description => string.Empty;
 
     public override int Category => (int)SkillCategory.Physical;
 }

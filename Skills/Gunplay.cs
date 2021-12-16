@@ -10,9 +10,6 @@ public class Gunplay : Skill
     }
 
     public override string Identifier => "gunplay";
-    public override string Name => "Gunplay";
-
-    public override string Description => "";
 
     public override int Category => (int)SkillCategory.Agility;
 }

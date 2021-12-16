@@ -11,9 +11,6 @@ public class HeavyArmor : Skill
     }
 
     public override string Identifier => "heavyarmor";
-    public override string Name => "Heavy Armor";
-
-    public override string Description => string.Empty;
 
     public override int Category => (int)SkillCategory.Physical;
 }

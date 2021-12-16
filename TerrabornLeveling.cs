@@ -11,6 +11,8 @@ namespace TerrabornLeveling;
 
 public class TerrabornLeveling : Mod
 {
+    public const string LocalizationPrefix = "Mods." + nameof(TerrabornLeveling) + ".";
+
     public TerrabornLeveling()
     {
         Instance = this;

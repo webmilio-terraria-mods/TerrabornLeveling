@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TerrabornLeveling.Perks;
+using Terraria.Localization;
 
 namespace TerrabornLeveling.Skills;
 
@@ -10,7 +11,6 @@ public class Archery : Skill
     }
 
     public override string Identifier => "archery";
-    public override string Name => "Archery";
 
     public override string Description => "";
 

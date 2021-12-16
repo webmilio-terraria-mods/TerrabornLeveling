@@ -1,5 +1,7 @@
-﻿using TerrabornLeveling.Perks.Visualisers;
+﻿using TerrabornLeveling.Assets;
+using TerrabornLeveling.Perks.Visualisers;
 using Terraria.ID;
+using TextureAssets = Terraria.GameContent.TextureAssets;
 
 namespace TerrabornLeveling.Perks.Magic.Restoration;
 
@@ -56,5 +58,6 @@ public class ManaFlow : Perk
 
     public float ManaRegenBuff => GetManaRegenBuff(Owner.Player.statManaMax2, Level);
 
-    public override IPerkVisualDescriptor Visuals { get; } = new AnimatedItemIconVisualDescriptor(new(0, 0.8327922f), ItemID.NebulaPickup3, 4, 6);
+    public override IPerkVisualDescriptor Visuals { get; } = new AnimatedTypeIconVisualDescriptor(new(0, 0.8327922f),
+        TextureAssets.Item, ItemID.NebulaPickup3, 4, 6);
 }

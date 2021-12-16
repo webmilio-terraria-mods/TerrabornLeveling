@@ -84,7 +84,7 @@ public class PerkVisualDescriptor : IPerkVisualDescriptor
 
     public Asset<Texture2D> Icon { get; set; }
 
-    public virtual float Scale { get; set; } = 1f;
-    public virtual float Rotation { get; set; }
+    public virtual float Scale { get; init; } = 1;
+    public virtual float Rotation { get; init; } = 0;
     public virtual Vector2 Origin => new(Size.X / 2f, Size.Y / 2f);
 }

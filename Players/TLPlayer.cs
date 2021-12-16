@@ -77,7 +77,9 @@ public partial class TLPlayer : BetterModPlayer
         List<ISkill> skills = new(); // We use a list instead of an array since it's possible a skill type can't be initialized properly.
 
         foreach (var type in provider.GetSkillTypes())
+        {
             skills.Add(factory.Make(type));
+        }
 
         skills.Do(s => s.Perks.Do(p => p.Owner = this));
 

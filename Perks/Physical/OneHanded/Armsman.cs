@@ -16,6 +16,7 @@ public class Armsman : Perk
 
     public override void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
+        // Add something to make sure Terrablade and Zenith don't get the buffs twice (from heavy weapons as well).
         if (!Swords.TryGet(item.type, out var record) || !record.Hands.HasFlag(WeaponHands.OneHanded)) return;
         
         damage *= DamageMultiplier;
@@ -23,7 +24,7 @@ public class Armsman : Perk
 
     public static float GetDamageMultiplier(int level)
     {
-        return 0.2f * level;
+        return 0.1f * level;
     }
 
     public override string GetDescription(int level)

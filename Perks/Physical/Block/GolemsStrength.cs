@@ -1,4 +1,5 @@
 ﻿using TerrabornLeveling.Perks.Visualisers;
+using Terraria.GameContent;
 using Terraria.ID;
 
 namespace TerrabornLeveling.Perks.Physical.Block;
@@ -53,5 +54,6 @@ public class GolemsStrength : Perk
 
     public float HealthRegenBuff => GetHealthRegenBuff(Owner.Player.statLifeMax2, Level);
 
-    public override IPerkVisualDescriptor Visuals { get; } = new AnimatedItemIconVisualDescriptor(new(0, 0.8327922f), ItemID.NebulaPickup2, 4, 6);
+    public override IPerkVisualDescriptor Visuals { get; } = new AnimatedTypeIconVisualDescriptor(new(0, 0.8327922f), 
+        TextureAssets.Item, ItemID.NebulaPickup2, 4, 6);
 }

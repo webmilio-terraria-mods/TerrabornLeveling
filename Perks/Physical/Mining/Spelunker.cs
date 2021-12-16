@@ -1,4 +1,5 @@
 ﻿using TerrabornLeveling.Perks.Visualisers;
+using Terraria.GameContent;
 using Terraria.ID;
 using WebmilioCommons;
 
@@ -47,5 +48,6 @@ public class Spelunker : Perk
     public int SpelunkerDuration => GetSpelunkerDuration(Level);
     public int Cooldown { get; private set; }
 
-    public override IPerkVisualDescriptor Visuals { get; } = new ItemIconVisualDescriptor(new(0.17110266f, 0.54037267f), ItemID.SpelunkerPotion);
+    public override IPerkVisualDescriptor Visuals { get; } = new TypeIconVisualDescriptor(new(0.17110266f, 0.54037267f), 
+        TextureAssets.Item, ItemID.SpelunkerPotion);
 }

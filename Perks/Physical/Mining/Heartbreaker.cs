@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using TerrabornLeveling.Perks.Visualisers;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 
 namespace TerrabornLeveling.Perks.Physical.Mining;
@@ -31,5 +32,6 @@ public class Heartbreaker : Perk
     public override string Name => "Heartbreaker";
     public override int MaxLevel => 2;
 
-    public override IPerkVisualDescriptor Visuals { get; } = new ItemIconVisualDescriptor(new(0.038022812f, 0.8136646f), ItemID.LifeCrystal);
+    public override IPerkVisualDescriptor Visuals { get; } = new TypeIconVisualDescriptor(new(0.038022812f, 0.8136646f), 
+        TextureAssets.Item, ItemID.LifeCrystal);
 }

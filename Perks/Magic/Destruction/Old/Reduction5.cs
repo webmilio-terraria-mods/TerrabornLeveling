@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace TerrabornLeveling.Perks.Magic.Destruction;
 
-[Parents(typeof(Reduction4))]
+// [Parents(typeof(Reduction4))]
 public class Reduction5 : ManaEfficiencyPerk
 {
     public Reduction5() : base("reduction5", ItemRarityID.Red, ItemRarityID.Purple)

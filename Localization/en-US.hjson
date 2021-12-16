@@ -1,0 +1,70 @@
+Mods: {
+	TerrabornLeveling: {
+		Skills: {
+			alchemy: {
+				Name: Alchemy
+			}
+
+			archery: {
+				Name: Archery
+			}
+
+			block: {
+				Name: Block
+			}
+
+			conjuration: {
+				Name: Conjuration
+			}
+
+			destruction: {
+				Name: Destruction
+			}
+
+			enchanting: {
+				Name: Enchanting
+			}
+
+			fishing: {
+				Name: Fishing
+				Desc: The art of patiently waiting for a bite. Those who show patience receive great reward.
+			}
+
+			gunplay: {
+				Name: Gunplay
+			}
+
+			heavyarmor: {
+				Name: Heavy Armor
+			}
+
+			lightarmor: {
+				Name: Light Armor
+			}
+
+			mining: {
+				Name: Mining
+			}
+
+			onehanded: {
+				Name: One Handed
+			}
+
+			restoration: {
+				Name: Restoration
+			}
+
+			smithing: {
+				Name: Smithing
+			}
+
+			speech: {
+				Name: Speech
+			}
+
+			twohanded: {
+				Name: Two Handed
+			}
+		}
+	}
+}

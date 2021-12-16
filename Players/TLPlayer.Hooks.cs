@@ -23,6 +23,13 @@ public partial class TLPlayer
         reduce = rReduce;
     }
 
+    public override void ModifyWeaponCrit(Item item, ref int crit)
+    {
+        int rCrit = crit;
+        ForUnlockedPerks(perk => perk.OnModifyWeaponCrit(item, ref rCrit));
+        crit = rCrit;
+    }
+
     public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
         StatModifier stats = damage;
@@ -32,6 +39,27 @@ public partial class TLPlayer
 
         damage = stats;
         flat = rFlat;
+    }
+
+    public void OnProjectileModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback,
+        ref bool crit, ref int hitDirection)
+    {
+        int rDamage = damage;
+        float rKnockback = knockback;
+        bool rCrit = crit;
+        int rHitDirection = hitDirection;
+
+        ForUnlockedPerks(perk => perk.OnProjectileModifyHitNPC(projectile, target, ref rDamage, ref rKnockback, ref rCrit, ref rHitDirection));
+
+        damage = rDamage;
+        knockback = rKnockback;
+        crit = rCrit;
+        hitDirection = rHitDirection;
+    }
+
+    public void OnProjectileHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+    {
+        ForUnlockedPerks(perk => perk.OnProjectileHitNPC(projectile, target, damage, knockback, crit));
     }
 
     public override void PostUpdate() => ForUnlockedPerks(perk => perk.OnPostUpdate());

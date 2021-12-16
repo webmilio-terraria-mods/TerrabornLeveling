@@ -16,14 +16,15 @@ public class Overdraw : Perk
 
     public override void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
-        if (!Bows.Is(item.type) && !Repeaters.Is(item.type)) return;
+        if (!Bows.Is(item.type) && !Repeaters.Is(item.type)) 
+            return;
 
         damage *= DamageMultiplier;
     }
 
     public static float GetDamageMultiplier(int level)
     {
-        return .2f * level;
+        return .1f * level;
     }
 
     public override string GetDescription(int level)

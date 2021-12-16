@@ -10,9 +10,6 @@ public class Block : Skill
     }
 
     public override string Identifier => "block";
-    public override string Name => "Block";
-
-    public override string Description => string.Empty;
 
     public override int Category => (int)SkillCategory.Physical;
 }

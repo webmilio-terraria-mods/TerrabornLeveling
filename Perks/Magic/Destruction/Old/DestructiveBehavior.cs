@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace TerrabornLeveling.Perks.Magic.Destruction;
 
-[Skill(typeof(Skills.Destruction))]
+// [Skill(typeof(Skills.Destruction))]
 public class DestructiveBehavior : ManaEfficiencyPerk
 {
     public DestructiveBehavior() : base("destructivebehavior", ItemRarityID.Gray, ItemRarityID.Green)

@@ -24,7 +24,7 @@ public class GunpowderJustice : Perk
 
     public static float GetDamageMultiplier(int level)
     {
-        return 0.2f * level;
+        return 0.1f * level;
     }
 
     public override string GetDescription(int level)
