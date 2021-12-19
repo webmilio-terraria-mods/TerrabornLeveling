@@ -25,17 +25,13 @@ public class SkillExperienceBarElement : UIElement
         Vector2 position = new((int)GetDimensions().X, (int)GetDimensions().Y);
 
         int width = (int)(_progress * 324);
-        int extendWidth = (int)MathHelper.Clamp(width - 12, 0, 312);
-        int rightPieceX = 24 + width;
+        int extendWidth = (int)MathHelper.Clamp(width, 0, 324);
 
         // Exp Bar BG
         spriteBatch.Draw(TextureAssets.SkillExperienceBar.Value, position + new Vector2(36, 12), new(2, 50, 324, 10), Color.White);
 
         // Exp Value Bar
-        // Extend Piece
-        spriteBatch.Draw(TextureAssets.SkillExperienceBar.Value, position + new Vector2(36, 12), new(2, 38, extendWidth, 10), Color.White);
-        // Right Piece
-        spriteBatch.Draw(TextureAssets.SkillExperienceBar.Value, position + new Vector2(rightPieceX, 12), new(322, 38, 12, 8), Color.White);
+        spriteBatch.Draw(TextureAssets.SkillExperienceBar.Value, position + new Vector2(38, 12), new(332 - extendWidth, 38, extendWidth, 10), Color.White);
 
         // Bar Outline
         spriteBatch.Draw(TextureAssets.SkillExperienceBar.Value, position, new Rectangle(2, 2, 400, 34), Color.White);

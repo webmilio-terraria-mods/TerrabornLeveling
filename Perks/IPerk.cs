@@ -31,6 +31,12 @@ public interface IPerk
     public virtual void OnProjectileModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback,
         ref bool crit, ref int hitDirection) { }
 
+    public virtual void OnHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit) { }
+    public virtual void OnModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit) { }
+
+    public virtual void OnModifyHitByNPC(NPC npc, ref int damage, ref bool crit) { }
+
+
     /// <summary>Only called on local clients.</summary>
     /// <param name="type">Tile type.</param>
     public virtual void OnRightClickTile(int i, int j, int type) { }

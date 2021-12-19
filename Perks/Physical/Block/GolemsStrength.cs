@@ -54,6 +54,6 @@ public class GolemsStrength : Perk
 
     public float HealthRegenBuff => GetHealthRegenBuff(Owner.Player.statLifeMax2, Level);
 
-    public override IPerkVisualDescriptor Visuals { get; } = new AnimatedTypeIconVisualDescriptor(new(0, 0.8327922f), 
+    public override IPerkVisualDescriptor Visuals { get; } = new AnimatedTypeIconVisualDescriptor(new(0.2f, 0.8327922f), 
         TextureAssets.Item, ItemID.NebulaPickup2, 4, 6);
 }
