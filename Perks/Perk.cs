@@ -29,7 +29,7 @@ public abstract class Perk : IPerk
     public virtual void OnGetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel) { }
 
     public virtual void OnModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat) { }
-    public virtual void OnModifyWeaponCrit(Item item, ref int crit) { }
+    public virtual void OnModifyWeaponCrit(Item item, ref float crit) { }
     public virtual void OnModifyManaCost(Item item, ref float reduce, ref float mult) { }
 
     public virtual void OnProjectileHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit) { }

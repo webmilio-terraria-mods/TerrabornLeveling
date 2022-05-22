@@ -23,16 +23,16 @@ namespace TerrabornLeveling.UI;
 
 public class SkillsMenu : UIState
 {
-    private readonly UIPanel container;
+    private readonly UIPanel _container;
     
     private int _activeSkill;
     private float _cameraX;
     private float _cameraHSpeed;
-    private SkillElement[] _skills;
+    private List<SkillElement> _skills;
 
     public SkillsMenu()
     {
-        container = new()
+        _container = new()
         {
             Width = StyleDimension.Fill,
             Height = StyleDimension.Fill,
@@ -41,19 +41,24 @@ public class SkillsMenu : UIState
             BorderColor = new(0, 0, 0, 0.75f)
         };
 
-        Append(container);
+        Append(_container);
     }
 
     public void PopulateSkills(TLPlayer player)
     {
-        container.RemoveAllChildren();
+        _container.RemoveAllChildren();
+        _skills = new(player.Skills.Count);
 
-        _skills = new SkillElement[player.Skills.Count];
+        player.Skills.Do((skill, i) =>
+        {
+            if (skill.Hidden || skill.Perks.Count == 0)
+                return;
 
-        player.Skills.Do((skill, i) => container.Append(_skills[i] = new SkillElement(skill, i, OnSkillElementClick)));
+            _skills.Add(new(skill, i, OnSkillElementClick));
+            _container.Append(_skills[^1]);
+        });
 
-        _activeSkill = _skills.Length / 2;
-
+        _activeSkill = _skills.Count / 2;
         UpdatePosition();
     }
 
@@ -142,7 +147,7 @@ public class SkillsMenu : UIState
 
     private void UpdatePosition()
     {
-        for (int i = 0; i < _skills.Length; i++)
+        for (int i = 0; i < _skills.Count; i++)
         {
             //var offsetI = (i - _activeSkill);
 
@@ -156,7 +161,7 @@ public class SkillsMenu : UIState
         _activeSkill -= 1;
 
         if (_activeSkill < 0)
-            _activeSkill = _skills.Length - 1;
+            _activeSkill = _skills.Count - 1;
 
         //UpdatePosition();
 
@@ -167,7 +172,7 @@ public class SkillsMenu : UIState
     {
         _activeSkill += 1;
 
-        if (_activeSkill >= _skills.Length)
+        if (_activeSkill >= _skills.Count)
             _activeSkill = 0;
 
         //UpdatePosition();

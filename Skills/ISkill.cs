@@ -36,5 +36,7 @@ public interface ISkill
 
     public int Category { get; }
 
+    public bool Hidden { get; }
+
     public IList<IPerk> Perks { get; }
 }

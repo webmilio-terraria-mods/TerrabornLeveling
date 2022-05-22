@@ -30,7 +30,6 @@ public abstract class Skill : ISkill
     private LocalizedText GetLocalizedText(string path) => Language.GetText(string.Format(path, Identifier));
 
     public virtual float Experience { get; }
-
     public virtual float ExperienceForLevel => ExperienceRequired(Level + 1);
 
     public virtual int Level => 1;
@@ -39,6 +38,8 @@ public abstract class Skill : ISkill
     public virtual int LegendaryLevel { get; }
 
     public abstract int Category { get; }
+
+    public virtual bool Hidden { get; } = true;
 
     public virtual IList<IPerk> Perks { get; }
 

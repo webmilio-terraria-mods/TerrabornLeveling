@@ -12,4 +12,6 @@ public class Smithing : Skill
     public override string Identifier => "smithing";
 
     public override int Category => (int)SkillCategory.Physical;
+
+    public override bool Hidden => true;
 }

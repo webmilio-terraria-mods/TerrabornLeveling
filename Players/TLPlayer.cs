@@ -9,11 +9,11 @@ using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using WebmilioCommons.Extensions;
-using WebmilioCommons.Players;
+using ModPlayer = WebmilioCommons.Players.ModPlayer;
 
 namespace TerrabornLeveling.Players;
 
-public partial class TLPlayer : BetterModPlayer
+public partial class TLPlayer : ModPlayer
 {
     public static TLPlayer Get() => Get(Main.LocalPlayer);
     public static TLPlayer Get(Player player) => player.GetModPlayer<TLPlayer>();

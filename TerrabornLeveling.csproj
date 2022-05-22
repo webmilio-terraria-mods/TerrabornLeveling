@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infuller\Infuller.csproj" />
-    <ProjectReference Include="..\TerrabornCore\TerrabornCore.csproj" />
     <ProjectReference Include="..\WebmilioCommons\WebmilioCommons.csproj" />
   </ItemGroup>
   <ItemGroup>

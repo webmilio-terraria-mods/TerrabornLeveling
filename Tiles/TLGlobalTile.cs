@@ -47,7 +47,7 @@ public class TLGlobalTile : GlobalTile
     {
         _alignedTiles.Do(tile =>
         {
-            if (Main.tile[tile.Position.X, tile.Position.Y].type == 0)
+            if (Main.tile[tile.Position.X, tile.Position.Y].TileType == 0)
             {
                 WorldGen.PlaceTile(tile.Position.X, tile.Position.Y, tile.Type);
             }

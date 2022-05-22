@@ -1,1 +1,8 @@
-Terraborn - Leveling is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+Skill trees inspired (if not stolen) by The Elder Scrolls V: Skyrim. This is a prototype and was never finished: I'll keep working on it depending on the feedback.
+You can find the repository [url=https://github.com/webmilio-terraria-mods/TerrabornLeveling](here) if you want to contribute or report bugs. I also check the comments.
+
+Thank you to Gotest for making the UI basis for this mod.
+Thanks to all the people who contributed ideas for the perks, skills, etc.
+
+## KNOWN BUGS ##
+> The UI can fuck up sometimes

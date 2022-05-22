@@ -62,7 +62,6 @@ public class PerkIconPanel : UIPanel
 
     public override void Click(UIMouseEvent evt)
     {
-        Main.NewText($"Perk '{Perk.Name}' was left clicked");
         _clickCallback?.Invoke(evt, this);
     }
 

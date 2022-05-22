@@ -11,7 +11,7 @@ public class AncientTechnique : Perk
     {
     }
 
-    public override void OnModifyWeaponCrit(Item item, ref int crit)
+    public override void OnModifyWeaponCrit(Item item, ref float crit)
     {
         if (item.DamageType != DamageClass.Summon) return;
 
