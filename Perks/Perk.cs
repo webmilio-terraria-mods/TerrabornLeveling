@@ -36,6 +36,11 @@ public abstract class Perk : IPerk
     public virtual void OnProjectileModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback,
         ref bool crit, ref int hitDirection) { }
 
+    public virtual void OnHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit) { }
+    public virtual void OnModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit) { }
+
+    public virtual void OnModifyHitByNPC(NPC npc, ref int damage, ref bool crit) { }
+
     public virtual void OnRightClickTile(int x, int y, int type) { }
 
     public virtual void OnContextActionKeybind() { }

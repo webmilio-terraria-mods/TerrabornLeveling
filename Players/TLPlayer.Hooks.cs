@@ -62,6 +62,42 @@ public partial class TLPlayer
         ForUnlockedPerks(perk => perk.OnProjectileHitNPC(projectile, target, damage, knockback, crit));
     }
 
+    public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+    {
+        int rDamage = damage;
+        float rKnockback = knockback;
+        bool rCrit = crit;
+
+        ForUnlockedPerks(perk => perk.OnHitNPC(item, target, ref rDamage, ref rKnockback, ref rCrit));
+
+        damage = rDamage;
+        knockback = rKnockback;
+        crit = rCrit;
+    }
+    public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+    {
+        int rDamage = damage;
+        float rKnockback = knockback;
+        bool rCrit = crit;
+
+        ForUnlockedPerks(perk => perk.OnModifyHitNPC(item, target, ref rDamage, ref rKnockback, ref rCrit));
+
+        damage = rDamage;
+        knockback = rKnockback;
+        crit = rCrit;
+    }
+
+    public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+    {
+        int rDamage = damage;
+        bool rCrit = crit;
+
+        ForUnlockedPerks(perk => perk.OnModifyHitByNPC(npc, ref rDamage, ref rCrit));
+
+        damage = rDamage;
+        crit = rCrit;
+    }
+
     public override void PostUpdate() => ForUnlockedPerks(perk => perk.OnPostUpdate());
     public override void PreUpdate() => ForUnlockedPerks(perk => perk.OnPreUpdate());
     public override void PreUpdateBuffs() => ForUnlockedPerks(perk => perk.OnPreUpdateBuffs());

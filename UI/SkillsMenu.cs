@@ -116,19 +116,20 @@ public class SkillsMenu : UIState
 
     private void UpdateCameraPosition()
     {
+        float cameraSpeed = 0.75f;
         // Camera scrolling
         float cameraDestination = _activeSkill * SkillElement.SizeWidth;
         if (_cameraX < cameraDestination)
         {
-            _cameraHSpeed += 0.5f;
-            if (_cameraHSpeed > 75)
-                _cameraHSpeed = 75;
+            _cameraHSpeed += cameraSpeed;
+            if (_cameraHSpeed > 100)
+                _cameraHSpeed = 100;
         }
         if (_cameraX > cameraDestination)
         {
-            _cameraHSpeed -= 0.5f;
-            if (_cameraHSpeed < -75)
-                _cameraHSpeed = -75;
+            _cameraHSpeed -= cameraSpeed;
+            if (_cameraHSpeed < -100)
+                _cameraHSpeed = -100;
         }
 
         if (_cameraHSpeed != 0)
@@ -202,6 +203,10 @@ public class SkillsMenu : UIState
     public override void OnActivate()
     {
         SoundEngine.PlaySound(SoundID.MenuOpen);
+
+        // Set the camera location to prevent initial long scroll
+        _cameraX = _activeSkill * SkillElement.SizeWidth;
+        UpdatePosition();
     }
 
     public override void OnDeactivate()
